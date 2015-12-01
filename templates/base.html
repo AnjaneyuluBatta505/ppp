@@ -1,0 +1,84 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block meta_tags %}
+    {% endblock %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Practice Placement Papers | HR Questions | Aptitude | Technical Questions| Reasoning | English </title>
+    <!-- Bootstrap  -->
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <script src="{% static 'js/ckeditor/ckeditor.js' %}"></script>
+    <script>
+		CKEDITOR.disableAutoInline = true;
+	</script>
+    {% block css %}
+
+    {% endblock %}
+  </head>
+<body oncontextmenu="return true" onkeypress="return true" onkeydown="return true;">
+    <div class="container border">
+      <div class="row">
+        <div class="container-fluid header">
+          <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12 ">
+            <div class="col-lg-12">
+              <h3 class="header title"><span style="color: #FF9933">Practice</span><span>Placement</span><span style="color: #138808">Papers</span></h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- navi-menu -->
+    <div class="nav-menu container">
+        <div class="container">
+            <div>
+                <ul class="nav nav-tabs ">
+                    <li role="presentation" class=""><a href="{% url 'ppp:home'%}">Home</a></li>
+                    <li role="presentation" class=""><a href="{% url 'ppp:topic' 'aptitude' %}">Aptitude</a></li>
+                    <li role="presentation" class=""><a href="{% url 'ppp:topic' 'reasoning' %}">Reasoning</a></li>
+                    <li role="presentation" class=""><a href="{% url 'ppp:topic' 'english' %}">English</a></li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Technical <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="#">C Programming</a></li>
+                        <li><a href="#">Database Management</a></li>
+                        <li><a href="#">Operating Systems</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Data Structures</a></li>
+                      </ul>
+                    </li>
+                    <li role="presentation"><a href="{% url 'ppp:topic' 'puzzles' %}">Puzzles</a></li>
+                    <li role="presentation"><a href="{% url 'ppp:interview' %}">Interview</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+  <!-- navi-menu-end -->
+
+{% block content %}
+
+{% endblock %}
+    <!--footer -->
+    <div class="container">
+      <div class="row footer">
+        <div class="footer menu">
+            &copy; practiceplacementpapers.com  All rights reserved |  <a href="{% url 'ppp:privacy_policy' %}"> Terms of Use | Privacy Policy</a> | Contact us: practiceplacementpapers505@gmail.com | Like us on fb, g+, tw
+        </div>
+      </div>
+    </div>
+    <br>
+    <!--end -->
+    <!-- jQuery plugins) -->
+    <script src="{% static 'jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/MathJax.js' %}"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"> </script>
+{% block javascript %}
+
+{% endblock %}
+</body>
+</html>

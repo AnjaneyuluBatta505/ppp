@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <!--content start -->
+    <div class="container companies">
+        <div class="col-lg-6">
+            <table class="no_border">
+                <tr>
+                    <td>
+                        <h3>{{ slug|title}}</h3>
+                    </td>
+                    <td>
+                        <table class="no_border">
+                            <tr>
+                            <td> CEO </td>
+                            <td> {{ company.ceo }} </td>
+                            </tr>
+                            <tr>
+                                <td> Founded </td>
+                                <td> {{ company.founded }} </td>
+                            </tr>
+                            <tr>
+                                <td> Founder(s)</td>
+                                <td> {{ company.founders }} </td>
+                            </tr>
+                            <tr>
+                                <td> Headquarters </td>
+                                <td> {{ company.headquarters }} </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-lg-6">
+                <!--advertisement here-->
+        </div>
+    </div>
+<div class="container companies">
+  <div class="col-lg-9">
+        <div class="row footer">
+            <h3>About {{ slug|title}}</h3>
+        </div>
+            <ul>
+                <li>
+                    <h4>About</h4>
+                    <span>
+                        {{ company.about|safe }}
+                    </span>
+                </li>
+                <li>
+                    <h4>History</h4>
+                    <span>
+                        {{ company.history|safe }}
+                    </span>
+                </li>
+                <li>
+                    <h4>Why to join?</h4>
+                    <span>
+                        {{ company.why_join|safe }}
+                    </span>
+                </li>
+            </ul>
+            <div class="footer">
+                <h3>Practice previous year's papers</h3>
+            </div>
+          {% for year in paper_years %}
+            <div class="col-lg-4">
+                <table class="no_border">
+                    <tr>
+                        <td>{{ year }}</td>
+                        <td><a href="{% url 'ppp:company_test_view' slug year %}">view</a></td>
+                        <td><a href="{% url 'ppp:company_test_start' slug year %}">Take Test</a></td>
+                        <!--<td><a href="#">Download</a></td>-->
+                    </tr>
+                </table>
+            </div>
+          {% endfor %}
+  </div>
+  <div class="col-lg-3 advertisement">
+    <!--advertisement-->
+  </div>
+</div>
+
+{% endblock %}

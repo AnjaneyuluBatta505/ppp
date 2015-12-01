@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <!--content start -->
+    <div class="container companies">
+        <div class="col-lg-6">
+            <!--advertisement-->
+        </div>
+        <div class="col-lg-6">
+            <!--advertisement-->
+        </div>
+    </div>
+    <div class="container companies topics ">
+        <div class="row footer margin ">
+            <h3>List of Topics  for {{ topic.name }}</h3>
+        </div>
+        <div class="col-lg-9">
+        {% for sub_topic in topic.subtopics.all %}
+            <div class="col-lg-3">
+                <li><a href="{% url 'ppp:sub_topic_test' topic=topic.slug sub_topic=sub_topic.slug %}">{{ sub_topic }}</a></li>
+            </div>
+        {% endfor %}
+        </div>
+        <div class="col-lg-3">
+            <!--advertisement-->
+        </div>
+    </div>
+{% endblock %}

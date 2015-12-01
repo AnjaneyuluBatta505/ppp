@@ -1,0 +1,214 @@
+application: your_project_id_here
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+libraries:
+- name: django
+  version: "1.5"
+- name: PIL
+  version: "1.1.7"
+- name: MySQLdb
+  version: "latest"
+
+builtins:
+- django_wsgi: on
+
+env_variables:
+  DJANGO_SETTINGS_MODULE: 'myblog.settings'
+  DATABASE_URL: 'mysql://root@your-project-id:sql-instance-name/database-name'
+
+handlers:
+- url: /static
+  static_dir: static
+
+
+  {% extends 'base.html' %}
+{% load staticfiles %}
+{% block css %}
+    <style>
+        .companies li  {
+            text-align: justify;
+            font-weight: normal;
+            text-overflow: auto;
+            line-height: 16pt;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <!--content start -->
+    <div class="container companies">
+        <!--<div width="200" height="100px">-->
+            <!--<img src="https://lh4.googleusercontent.com/-v6iWXgncmDg/AAAAAAAAAAI/AAAAAAAAAAA/RodASOT2otw/s0-c-k-no-ns/photo.jpg" width="" height="100px">-->
+        <!--</div>-->
+        <table  style="width:100%">
+            <colgroup>
+                <col style="width: 15%" />
+                <col style="width: 40%" />
+            </colgroup>
+            <tr>
+                <td>
+                    <img src="http://cdn.shareyouressays.com/wp-content/uploads/2015/09/aptitude-clipart-assessment-clipart.jpg" width="" height="150px">
+                </td>
+                <td>
+                    <img src="https://raphaelhertzog.com/files/2011/06/road-sign-apt-get-aptitude.png"  width="" height="150px">
+                    <img src="http://visualkart.com/wp-content/uploads/2015/06/952c2322-38b6-41f9-aef2-ad574e4dcbd5.png" width="" height="150px">
+                </td>
+                <td>
+                    <img src="http://1.bp.blogspot.com/-_Y7dLwb99tY/UFtQ4lINhqI/AAAAAAAAAX4/2MCzAV4i4no/s1600/Quantitative+Aptitude+Tips+&+Tricks+for+CAT.png" width="" height="150px">
+                </td>
+            </tr>
+            </tr>
+        </table>
+        </table>
+    </div>
+    <div class="container companies topics ">
+        <div class="row footer margin ">
+          <h3> How to prepare for Interview ?</h3>
+        </div>
+        <ol>
+        <div class="col-lg-12">
+           <li>
+               <h4>How to prepare your resume ?</h4>
+                <span class="interview answer">
+                    A resume is a representation of oneself in a text document. Resume shows your skills, experience and achievements and the way how you  represent yourself in words.
+                </span>
+           </li>
+            <p>
+                <ul type="square" class="interview answer">
+                    <li style="color:green">Steps in making resume:</li>
+                    <li> Font size : 11pt or 12pt</li>
+                    <li> Font style : Times New Roman or classic-serif or Arial or Calibri </li>
+                    <li> Header size: 14pt or 16pt </li>
+                    <li> Text always printed in solid black ink</li>
+                    <li> Deactivate hyper links if any </li>
+                    <li style="color:green"> Now,Start writing resume</li>
+                    <ol>
+                        <li>
+                            Heading :
+                            <ul>
+                                <li>
+                                    Heading in resume includes your name, address, email, college, nature of study and phone number
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Try some sample resume styles
+                            <ul>
+                                <li>
+                                    sample resume gives knowledge about how to write resume in your own style.
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Define your career objective :
+                            <ul>
+                                <li>
+                                    Your career objective is a personal statement defining the specifics you wish to attain via professional work.
+                                    Don't copy career objective from others.
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Write about your educational background :
+                            <ul>
+                                <li>
+                                    It shows your acadamic performance
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Write about your experience(for freshers Major project, minor project, Internship etc.) :
+                            <ul>
+                                <li>
+                                    It shows your practical knowledge and experience.
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Write about your Technical skills :
+                            <ul>
+                                <li>
+                                    It shows proficiency in technologies.
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Write about your Achievements and Participation
+                        </li>
+                        <li>
+                            Write about your Extra curricular activities.
+                        </li>
+                        <li>
+                            Write your areas of interest and address for contact and declaration.
+                        </li>
+                    </ol>
+                </ul>
+            </p>
+            <li><h4>Body language and Dressing </h4></li>
+            <p>
+                <ul class="interview answer">
+                    <li> First impression is always the best impression </li>
+                    <li>
+                        Dress properly
+                        <ol>
+                        <li> Reighsearch about company culture of organization dress yourself according to that</li>
+                        <li> Wear formal dress,avoid jewellary and over makeup, Be formal and good looking</li>
+                        </ol>
+                    </li>
+                    <li>
+                        Mainttain open posture and fell like it is a casual talk with your friend.
+                    </li>
+                    <li>
+                        Avoid high pitch when speaking
+                    </li>
+                    <li>
+                        Dont get nervour or anxiety
+                    </li>
+                    <li>
+                        Show confidence and enthusiasm towards leiarning new things
+                    </li>
+                    <li>
+                        Speak with your actions not with words
+                    </li>
+                    <li>
+                        Shake hands with interviewer firmly.
+                    </li>
+                    <li>
+                        Smile is the most most simplest way to create a positive impression of yourself, but not always
+                    </li>
+                    <li>
+                        Eye contact plays a major role but don't make interviewer uncomfortable
+                    </li>
+                </ul>
+            </p>
+            <li><h4>What human resource manager expects from you? </h4></li>
+            <p>
+            <ul class="interview answer">
+                <li> HR want to test your character </li>
+                <li> HR want to make sure you're not a robot </li>
+                <li> HR want to get a sense of your self-awareness.</li>
+                <li> HR want to hear that you're working to strengthen this weakness. </li>
+                <li> HR want to see how you handle tough questions. </li>
+                <li> HR want to hear something positive from you. </li>
+                <li> HR want to know your weakness won't affect your performance. </li>
+            </ul>
+            </p>
+            <li><h4>What not to Do in interviews ? </h4></li>
+            <p>
+            <ul class="interview answer">
+                <li> First impression is always the best impression </li>
+                <li> Follow timings don't go late to interview </li>
+                <li> Don't argue with the interviewer, no matter what. Remember to keep things positive!</li>
+                <li> Don't let your nerves show too much in the interview</li>
+                <li> Don't afraid to ask questions to the interviewer </li>
+                <li> Don't talk too much means don't explain too much try to make interviwer to understand what you are saying</li>
+            </ul>
+            </p>
+            <br>
+        </div>
+
+        </ol>
+    </div>
+{% endblock %}

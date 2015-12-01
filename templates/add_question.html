@@ -1,0 +1,346 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <!--content start -->
+    <div class="container companies clock" >
+        <div class="col-lg-6">
+            {% if not request.POST %}
+            {% if not view_test %}
+            <div class="col-lg-4">
+                <div class="col-lg-3">
+                    <h6>Time</h6>
+                </div>
+
+                <div class="col-lg-3">
+                    <input type="text" name="hour" value="01"/>
+                </div>
+
+                <div class="col-lg-3">
+                    <input type="text" name="minute" value="30"/>
+                </div>
+
+                <div class="col-lg-3">
+                    <input type="text" name="second" value="00"/>
+                </div>
+            </div>
+            {% endif %}
+            {% endif %}
+
+            <div class="col-lg-5">
+                <h3>{{slug|title }}</h3><p>{{ date_slug }}</p>
+            </div>
+            {% if not view_test and not request.POST%}
+            <div class="col-lg-3">
+                <input type="button" id="startTest" value="Start Test" style="max-width:200px;"/>
+            </div>
+            {% endif %}
+        </div>
+        <div class="col-lg-6">
+            <!--advertisement-->
+        </div>
+    </div>
+    <div class="container companies">
+        <div class="col-lg-9">
+            <form action="" method="post" id="test_submit">
+        {% csrf_token %}
+{% for topic,questions in test %}
+    <div id="{{ topic.slug }}">
+        <div class="col-lg-12 topic">
+            <h3>{{ topic|title }}</h3>
+        </div>
+        <ol>
+          {% for question in questions %}
+            <!-- question -->
+            <div class="col-lg-12 row question">
+                <div>
+                    <li>
+                        {{ question.data|safe }}
+                    </li>
+                  {% if question.image %}
+                    <!-- question help image -->
+                    <div class="col-lg-12">
+                        <img src="{{ question.image.url }}">
+                    </div>
+                  {% endif %}
+                  {% for choice in question.choices.all %}
+                    <!-- choice -->
+                    <div class="col-lg-6 question choice">
+                        <div class="col-lg-12" style="padding:0px;margin:0px;">
+                            <div class="col-lg-12">
+                                <div class="col-lg-2 {% if choice.id|slugify in request.POST.values and choice.is_answer %} correct{% endif %}">
+                                    <input name="{{ question.id }}"  type="{% if choice.is_answer and request.POST %}checkbox{%else%}radio{% endif %}" value="{{ choice.id }}" {% if choice.id|slugify in request.POST.values or request.POST and choice.is_answer %}checked{% endif %}{%if request.POST %} disabled{%endif%} >
+                                </div>
+                                <div class="col-lg-10" >
+                                    {{ choice.description|safe }}
+                                </div>
+                            </div>
+                            {% if choice.image %}
+                            <div class="col-lg-10" >
+                                    <img src="{{ choice.image.url }}" style="width:100%;height:100%;">
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!--end choice -->
+                  {% endfor %}
+                {% if request.POST %}
+                  {% for answer in question.answers.all %}
+                    <!-- answer -->
+                    <div class="col-lg-12 question ">
+                        <span class="question explination title">
+                            Explination:
+                        </span>
+                      {% if answer.image %}
+                        <!-- help image -->
+                        <div>
+                            <img src="{{ answer.image.url }}">
+                        </div>
+                        <!-- end help image -->
+                      {% endif %}
+                        <!-- ans explination -->
+                        <span>
+                                {{ answer.explination|safe }}
+                        </span>
+                        <!-- ans explination ends -->
+                    </div>
+                    <!-- end answer -->
+                  {% endfor %}
+                {% endif %}
+                </div>
+            </div>
+            <!-- question end -->
+            {% for question in  question.linked_questions.all %}
+                <!-- question -->
+                <div class="col-lg-12 question">
+                    <div>
+                        <li>
+                            {{ question.data|safe }}
+                        </li>
+                      {% if question.image %}
+                        <!-- question help image -->
+                        <div class="col-lg-12">
+                            <img src="{{ question.image.url }}">
+                        </div>
+                      {% endif %}
+                      {% for choice in question.choices.all %}
+                        <!-- choice -->
+                        <div class="col-lg-6 question choice">
+                            <div class="col-lg-1" >
+                                {% if choice.id|slugify in request.POST.values %}${% endif %}{% if choice.is_answer %}*{% endif %}
+                                <input name="{{ question.id }}" type="radio" value="{{ choice.id }}">
+                            </div>
+                            <div class="col-lg-10" >
+                                {{ choice.description|safe }}
+                            </div>
+                          {% if choice.image %}
+                            <div>
+                                <img src="{{ choice.image.url }}">
+                            </div>
+                          {% endif %}
+                        </div>
+                        <!--end choice -->
+                      {% endfor %}
+                    {% if request.POST %}
+                      {% for answer in question.answers.all %}
+                        <!-- answer -->
+                        <div class="col-lg-12 question answer">
+                            <span class="question explination title">
+                                Explination:
+                            </span>
+                          {% if answer.image %}
+                            <!-- help image -->
+                            <div>
+                                <img src="{{ answer.image.url }}">
+                            </div>
+                            <!-- end help image -->
+                          {% endif %}
+                            <!-- ans explination -->
+                            <span>
+                                    {{ answer.explination|safe }}
+                            </span>
+                            <!-- ans explination ends -->
+                        </div>
+                        <!-- end answer -->
+                      {% endfor %}
+                    {% endif %}
+                    </div>
+                </div>
+                <!-- question end -->
+            {% endfor %}
+          {% endfor %}
+        </ol>
+    </div>
+  {% endfor %}
+  {% if not request.POST and not view_test%}
+    <button class="btn btn-default companies submit" type="submit" disabled> submit test </button>
+  {% endif %}
+  {% if request.POST %}
+    <div class="col-lg-12 topic">
+            <h3>Preview Test Results</h3>
+    </div>
+    <div id="chart-container">Performance chart</div>
+  {% endif %}
+    </form>
+    </div>
+        <div class="col-lg-3">
+            <!--advertisement-->
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+{% if request.POST %}
+<script src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script>
+<script src="http://static.fusioncharts.com/code/latest/fusioncharts.charts.js"></script>
+
+<script>
+
+    FusionCharts.ready(function () {
+    var salesChart = new FusionCharts({
+        type: 'mscolumn3d',
+        renderAt: 'chart-container',
+        width: '100%',
+        height: '350',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+                "caption": "Performance Analysis",
+                "subCaption": "You can review your performance here",
+                "xAxisName": "Topics covered",
+                "yAxisName": "Number of questions",
+                "numberPrefix": "",//"$"
+                "paletteColors": "#0075c2,#1aaf5d,#f2c500",
+                "bgColor": "#C4CED7",
+                "showBorder": "0",
+                "showCanvasBorder": "0",
+                "usePlotGradientColor": "0",
+                "plotBorderAlpha": "10",
+                "legendBorderAlpha": "0",
+                "legendBgAlpha": "0",
+                "legendShadow": "0",
+                "showHoverEffect" : "1",
+                "valueFontColor": "#ffffff",
+                "rotateValues": "1",
+                "placeValuesInside": "1",
+                "divlineColor": "#999999",
+                "divLineIsDashed": "1",
+                "divLineDashLen": "1",
+                "divLineGapLen": "1",
+                "canvasBgColor": "#ffffff",
+                "captionFontSize": "14",
+                "subcaptionFontSize": "14",
+                "subcaptionFontBold": "0"
+            },
+            "categories": [
+                {
+                    "category": [
+                     {% for topic, questions in test %}
+                        {
+                            "label": "{{ topic.name }}"
+                        },
+                     {% endfor %}
+                    ]
+                }
+            ],
+            "dataset": [
+                {
+                    "seriesname": "Total no of questions",
+                    "data": [
+                      {% for topic, questions in test %}
+                        {
+                            "value": $("#{{ topic.slug }} input[type='checkbox']").length
+                        },
+                      {% endfor %}
+                    ]
+                },
+                {
+                    "seriesname": "No of attempted questions",
+                    "data": [
+                    {% for topic, questions in test %}
+                        {
+                            "value": $("#{{ topic.slug }} input[type='radio']:checked").length + $("#{{ topic.slug }} .correct ").length
+                        },
+                    {% endfor %}
+                    ]
+                },
+                {
+                    "seriesname": "Correctly answered questions",
+                    "data": [
+                    {% for topic, questions in test %}
+                        {
+                            "value": $("#{{ topic.slug }} .correct ").length
+                        },
+                    {% endfor %}
+                    ]
+                }
+            ]
+        }
+    })
+    .render();
+});
+</script>
+{% endif %}
+{% if not request.POST %}
+<script>
+     $('#startTest').click(function(event){
+     $("body :input[type='radio']").prop("disabled", false);
+     $('button').removeAttr('disabled');
+     alert("Test started")
+     $(this).remove();
+     $hours = $('input[name="hour"]')
+     $minutes = $('input[name="minute"]')
+     $seconds = $('input[name="second"]')
+     hour = parseInt($hours.val())
+     minute = parseInt($minutes.val())
+     second = parseInt($seconds.val())
+     console.log(hour+":"+minute+":"+second)
+     var stop = setInterval(function (event){
+        second = second -1
+        if(second<0){
+            second = 59
+            minute = minute - 1
+
+            if(minute<10){
+                $minutes.val("0"+minute)
+            }
+            else{
+                $minutes.val(minute)
+            }
+        }
+        if(minute <0){
+            minute = 59
+            hour = hour - 1
+            if(hour<10){
+                $hours.val("0"+hour)
+            }
+            else{
+                $hours.val(hour)
+            }
+
+        }
+        if(second<10){
+                $seconds.val("0"+second)
+            }
+        else{
+            $seconds.val(second)
+        }
+        if (hour==0 && minute==0 && second==0){
+            alert("running out of time")
+            clearInterval(stop)
+            $('#test_submit').submit();
+        }
+        if(hour==0 && minute==5 && second==0){
+          alert("you have left 5 minutes only!!!")
+        }
+     }, 1000)
+ });
+
+
+</script>
+{% endif %}
+<script>
+    $("body :input[type='radio']").prop("disabled", true);
+</script>
+
+{% endblock %}

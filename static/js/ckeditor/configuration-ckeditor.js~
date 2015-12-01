@@ -1,0 +1,10 @@
+(function($) {
+            $(document).ready(function() {
+		CKEDITOR.disableAutoInline = true;
+		//CKEDITOR.replace('id_data');
+		CKEDITOR.replace( 'id_data', {
+               		 extraPlugins: 'mathjax',
+	   	     	 height: 350
+	   	  });
+	   })	
+        })(django.jQuery);

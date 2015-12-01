@@ -1,0 +1,81 @@
+from django.http import HttpResponse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render
+from .models import *
+
+# Create your views here.
+
+def home(request):
+    companies = Company.objects.all()
+    return render(request, 'home.html', {'companies':companies})
+
+def company(request, slug):
+    company = Company.objects.get(slug=slug)
+    years = Year.objects.all()
+    paper_years = []
+    for year in years:
+        if Question.objects.filter(company=company,date=year):
+            paper_years.append(year)
+    return render(request, 'company.html',{'company': company, 'paper_years':paper_years, 'slug':slug})
+
+def topic(request, slug):
+    topic = Topic.objects.get(slug=slug)
+    print topic
+    print topic.subtopics.all()
+    return render(request, 'topic.html',{'topic':topic})
+
+def sub_topic(request, topic, sub_topic):
+    topic = Topic.objects.get(slug=topic)
+    subtopic = topic.subtopics.get(slug=sub_topic)
+    questions = subtopic.questions.all()
+    paginator = Paginator(questions, 2) # Show 25 contacts per page
+    page = request.GET.get('page')
+    try:
+        questions = paginator.page(page)
+    except PageNotAnInteger:
+        questions = paginator.page(1)
+        request.GET = request.GET.copy()
+        request.GET['page']=1
+    except EmptyPage:
+        questions = paginator.page(paginator.num_pages)
+    test=[(subtopic,questions)]
+    dictctionary =  {'test':test,'slug':topic,'paginator':paginator}
+    return render(request, 'subtopic.html', dictctionary)
+
+def interview(request):
+    topic = Topic.objects.get(slug='interview')
+    subtopic = topic.subtopics.get(slug='interview')
+    questions = subtopic.questions.all()
+    paginator = Paginator(questions, 2) # Show 25 contacts per page
+    page = request.GET.get('page')
+    try:
+        questions = paginator.page(page)
+    except PageNotAnInteger:
+        questions = paginator.page(1)
+        request.GET = request.GET.copy()
+        request.GET['page']=1
+    except EmptyPage:
+        questions = paginator.page(paginator.num_pages)
+    test=[(subtopic,questions)]
+    dictctionary =  {'test':test,'slug':topic,'paginator':paginator}
+    print questions
+    return render(request, 'interview.html', dictctionary)
+
+def company_test_start(request,slug,date_slug):
+    questions = Question.objects.filter(company__slug=slug, date=Year.objects.get(date=date_slug))
+    test=[]
+    for topic in Topic.objects.all().exclude(slug='interview'):
+        test.append((topic, questions.filter(sub_topic__in=topic.subtopics.all())))
+    dictctionary =  {'test':test,'slug':slug, 'date_slug':date_slug}
+    return render(request, 'add_question.html', dictctionary)
+
+def company_test_view(request,slug,date_slug):
+    questions = Question.objects.filter(company__slug=slug, date=Year.objects.get(date=date_slug))
+    test=[]
+    for topic in Topic.objects.all().exclude(slug='interview'):
+        test.append((topic, questions.filter(sub_topic__in=topic.subtopics.all())))
+    return render(request, 'add_question.html', {'test':test,'slug':slug,'view_test':True,'date_slug':date_slug})
+
+def privacy_policy(request):
+    return render(request, 'privacy-policy.html')
+
