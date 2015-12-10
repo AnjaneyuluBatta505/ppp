@@ -2,7 +2,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 project_root = BASE_DIR
 SECRET_KEY = 'n#%r@ld2uj%-m-=#ptud9^b%0-*qhzj74uueiaafj484)p%zco'
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['localhost','127.0.0.1']
 MEDIA_ROOT = os.path.join(BASE_DIR+'/static/media/')
 MEDIA_URL = '/static/media/'
