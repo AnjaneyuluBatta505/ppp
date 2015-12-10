@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from .models import *
 
 # Create your views here.
@@ -79,3 +79,15 @@ def company_test_view(request,slug,date_slug):
 def privacy_policy(request):
     return render(request, 'privacy-policy.html')
 
+def handler404(request):
+    response = render('404.html', {},
+                                  context_instance=RequestContext(request))
+    response.status_code = 404
+    return response
+
+
+def handler500(request):
+    response = render_to_response('500.html', {},
+                                  context_instance=RequestContext(request))
+    response.status_code = 500
+    return response
