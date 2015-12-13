@@ -7,16 +7,6 @@ ALLOWED_HOSTS = ['localhost','127.0.0.1']
 MEDIA_ROOT = os.path.join(BASE_DIR+'/static/media/')
 MEDIA_URL = '/static/media/'
 DJANGO_SETTINGS_MODULE = 'settings'
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "/static"),
-)
-
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'django.contrib.staticfiles.finders.DefaultStorageFinder',
-)
 
 
 INSTALLED_APPS = (
@@ -70,20 +60,22 @@ DATABASES = {
 
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
+###### STATIC ASSETS #####
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)
 
-
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR+STATIC_URL
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "/static/"),
 )
-STATIC_ROOT = BASE_DIR+STATIC_URL
 
