@@ -1,13 +1,11 @@
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-project_root = BASE_DIR
 SECRET_KEY = 'n#%r@ld2uj%-m-=#ptud9^b%0-*qhzj74uueiaafj484)p%zco'
 DEBUG = True
 ALLOWED_HOSTS = ['localhost','127.0.0.1', 'practiceplacementpapers.herokuapp.com']
 MEDIA_ROOT = os.path.join(BASE_DIR+'/static/media/')
 MEDIA_URL = '/static/media/'
 DJANGO_SETTINGS_MODULE = 'settings'
-
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -58,7 +56,6 @@ DATABASES = {
     }
 }
 
-
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
@@ -66,16 +63,10 @@ USE_L10N = True
 USE_TZ = True
 
 ###### STATIC ASSETS #####
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'django.contrib.staticfiles.finders.DefaultStorageFinder',
-)
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR+STATIC_URL
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "/static/"),
-)
+THUMBNAIL_PRESERVE_FORMAT=True
+STATIC_ROOT = (os.path.join(BASE_DIR, "static"))
 
+MEDIA_ROOT = os.path.join(BASE_DIR+'/static/media/')
+MEDIA_URL = '/media/static/'
