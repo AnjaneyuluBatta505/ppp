@@ -20,8 +20,6 @@ def company(request, slug):
 
 def topic(request, slug):
     topic = Topic.objects.get(slug=slug)
-    print topic
-    print topic.subtopics.all()
     return render(request, 'topic.html',{'topic':topic})
 
 def sub_topic(request, topic, sub_topic):
@@ -58,7 +56,6 @@ def interview(request):
         questions = paginator.page(paginator.num_pages)
     test=[(subtopic,questions)]
     dictctionary =  {'test':test,'slug':topic,'paginator':paginator}
-    print questions
     return render(request, 'interview.html', dictctionary)
 
 def company_test_start(request,slug,date_slug):

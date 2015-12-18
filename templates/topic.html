@@ -10,13 +10,13 @@
             <!--advertisement-->
         </div>
     </div>
-    <div class="container companies topics ">
+    <div class="container companies topics " >
         <div class="row footer margin ">
             <h3>List of Topics  for {{ topic.name }}</h3>
         </div>
-        <div class="col-lg-9">
+        <div class="col-lg-9" style="min-height:449px;">
         {% for sub_topic in topic.subtopics.all %}
-            <div class="col-lg-3">
+            <div class="col-lg-4">
                 <li><a href="{% url 'ppp:sub_topic_test' topic=topic.slug sub_topic=sub_topic.slug %}">{{ sub_topic }}</a></li>
             </div>
         {% endfor %}

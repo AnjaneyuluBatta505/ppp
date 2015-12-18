@@ -8,7 +8,9 @@
 	   	 //   });
 
 			$("textarea").each(function(index,val){
-				CKEDITOR.replace( $(val).attr('id') );
+				CKEDITOR.replace( $(val).attr('id'),
+					{extraPlugins: 'mathjax'}
+				);
 			});
 	   })	
         })(django.jQuery);
