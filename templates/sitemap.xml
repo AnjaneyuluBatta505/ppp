@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+  <loc>http://practiceplacementpapers.herokuapp.com/</loc>
+  <loc>http://practiceplacementpapers.herokuapp.com</loc>
+  <priority>1.0</priority>
+</url>
+<url>
+  <loc>http://practiceplacementpapers.herokuapp.com/practice/aptitude/</loc>
+</url>
+<url>
+  <loc>http://practiceplacementpapers.herokuapp.com/practice/reasoning/</loc>
+</url>
+<url>
+  <loc>http://practiceplacementpapers.herokuapp.com/practice/english/</loc>
+</url>
+<url>
+  <loc>https://practiceplacementpapers.herokuapp.com/interview/tips/</loc>
+</url>
+<url>
+  <loc>https://practiceplacementpapers.herokuapp.com/practice/puzzles/</loc>
+</url>
+<url>
+  <loc>https://practiceplacementpapers.herokuapp.com/practice/reasoning/</loc>
+</url>
+<url>
+  <loc>https://practiceplacementpapers.herokuapp.com/contact-us/</loc>
+</url>
+<url>
+  <loc>https://practiceplacementpapers.herokuapp.com/privacy-policy/</loc>
+</url>
+</urlset>

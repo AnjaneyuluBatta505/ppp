@@ -27,9 +27,9 @@ class Company(models.Model):
     founded = models.ForeignKey(Year, blank=True)
     founders = models.CharField(max_length=50, blank=True, null=True)
     headquarters = models.CharField(max_length=50, blank=True, null=True)
-    about = models.CharField(max_length=1000, null=True)
-    history = models.CharField(max_length=1000, null=True)
-    why_join = models.CharField(max_length=1000, null=True)
+    about = models.CharField(max_length=2000, null=True)
+    history = models.CharField(max_length=2000, null=True)
+    why_join = models.CharField(max_length=2000, null=True)
     def __str__(self):
         return self.name
 

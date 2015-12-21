@@ -4,6 +4,8 @@ from django.contrib import admin
 from .models import *
 from .forms import *
 
+admin.site.site_header = 'PracticePlacementPapers Administration'
+
 class CompanyAdmin(admin.ModelAdmin):
     form = CompanyForm
     exclude = []

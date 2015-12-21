@@ -1,7 +1,7 @@
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'n#%r@ld2uj%-m-=#ptud9^b%0-*qhzj74uueiaafj484)p%zco'
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['localhost','127.0.0.1', 'practiceplacementpapers.herokuapp.com']
 MEDIA_ROOT = os.path.join(BASE_DIR+'/static/media/')
 MEDIA_URL = '/static/media/'
@@ -26,6 +26,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'practiceplacementpapers.slash_middleware.RemoveSlashMiddleware'
 )
 
 ROOT_URLCONF = 'practiceplacementpapers.urls'
