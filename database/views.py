@@ -95,3 +95,5 @@ def robot(request):
 def sitemap(request):
     return render_to_response("sitemap.xml",content_type="text/xml")
 
+def google_verification(request):
+    return render_to_response("googlea95613a6b3c4ff8a.html", content_type="text/html")
