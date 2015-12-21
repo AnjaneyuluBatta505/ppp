@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^privacy-policy/$', views.privacy_policy , name='privacy_policy'),
     url(r'^robots.txt$', views.robot , name='robot'),
     url(r'^sitemap.xml$', views.sitemap, name='sitemap'),
+    url(r'^googlea95613a6b3c4ff8a.html$', views.google_verification, name='google_verification'),
 ]
