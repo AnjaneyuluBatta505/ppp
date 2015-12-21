@@ -88,3 +88,10 @@ def handler500(request):
                                   context_instance=RequestContext(request))
     response.status_code = 500
     return response
+
+def robot(request):
+    return render_to_response("robots.txt",content_type="text")
+
+def sitemap(request):
+    return render_to_response("sitemap.xml",content_type="text/xml")
+

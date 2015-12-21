@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% block meta_tags %}
+    <meta name="keywords" content="{% for sub_topic in topic.subtopics.all|slice:':20' %} {{ sub_topic }},{%endfor%}">
+    <meta name="description" content=" Practice placement papers and questions with answers and explination for free. practice topics, for free with time, you can set your own time while practicing.">
+    <meta name="title" content="practiceplacementpapers, {{ topic.name }}">
+{% endblock %}
 {% block content %}
     <!--content start -->
     <div class="container companies">

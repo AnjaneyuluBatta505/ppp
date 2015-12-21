@@ -10,5 +10,7 @@ urlpatterns = [
     url(r'^interview/tips/$', views.interview, name='interview'),
     url(r'^company/(?P<slug>[\w-]+)/(?P<date_slug>[0-9]+-[0-9]+-[0-9]+)/test/start/$', views.company_test_start, name='company_test_start'),
     url(r'^company/(?P<slug>[\w-]+)/(?P<date_slug>[0-9]+-[0-9]+-[0-9]+)/test/view/$', views.company_test_view, name='company_test_view'),
-    url(r'^privacy_policy/$', views.privacy_policy , name='privacy_policy'),
+    url(r'^privacy-policy/$', views.privacy_policy , name='privacy_policy'),
+    url(r'^robots.txt$', views.robot , name='robot'),
+    url(r'^sitemap.xml$', views.sitemap, name='sitemap'),
 ]

@@ -8,10 +8,24 @@ body{
     line-height: normal;
     font-family: 'Josefin' Sans;
 }
+li h4{
+color:#138808;
+}
 .header{
-    padding:10px;
+    padding:5px;
     background:#C4CED7;
 }
+.header_title{
+    color:#FFFFFF;
+    font-weight: 650;
+    font-family: 'Questrial', sans-serif;
+}
+.header_title span{
+    font-size:30pt;
+    letter-spacing:0px;
+    text-shadow: 1px 1px 2px #000, 0px 0px 1em #00F, 0px 0px 0.2em #4d4dff;
+}
+
 .header.title{
     color:#FFFFFF;
     font-weight: 650;
@@ -19,6 +33,7 @@ body{
     letter-spacing: 10px;
     font-size: 3em;
     text-overflow: ellipsis;
+
 
 }
 .header.header-top-bar{

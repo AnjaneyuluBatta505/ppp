@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% block meta_tags %}
+    <meta name="keywords" content="practice placement papers, about company, time based practice">
+    <meta name="description" content="{{ company.about|truncatewords:49}} ">
+    <meta name="title" content="practice placement papers, timebased practice">
+{% endblock %}
 {% block content %}
     <!--content start -->
     <div class="container companies">
@@ -7,7 +12,7 @@
             <table class="no_border">
                 <tr>
                     <td>
-                        <h3>{{ slug|title}}</h3>
+                        <h3>{{ slug|title|upper}}</h3>
                     </td>
                     <td>
                         <table class="no_border">
@@ -39,7 +44,7 @@
 <div class="container companies">
   <div class="col-lg-9">
         <div class="row footer">
-            <h3>About {{ slug|title}}</h3>
+            <h3>About {{ slug|title|upper}}</h3>
         </div>
             <ul>
                 <li>

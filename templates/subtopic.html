@@ -1,17 +1,22 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% block meta_tags %}
+    <meta name="keywords" content="Practice placement papers, and ,questions with answers and explination for free {{slug}}">
+    <meta name="description" content="Practice placement papers and questions with answers and explination for free. practice topics, for free with time, you can set your own time while practicing.">
+    <meta name="title" content="">
+{% endblock %}
 {% block content %}
     <!--content start -->
     <div class="container companies clock" >
         <div class="col-lg-6">
             {% if not request.POST %}
             {% if not view_test %}
-            <div class="col-lg-4">
+            <div class="col-lg-4" title="you can set your own time">
                 <div class="col-lg-3">
                     <h6>Time</h6>
                 </div>
 
-                <div class="col-lg-3">
+                <div class="col-lg-3" >
                     <input type="text" name="hour" value="01"/>
                 </div>
 
@@ -30,7 +35,7 @@
                 <h3>{{slug|title }}</h3><span>{{ date_slug }}</span>
             </div>
             {% if not view_test and not request.POST%}
-            <div class="col-lg-3">
+            <div class="col-lg-3" title="click to start test">
                 <input type="button" id="startTest" value="Start Test" style="max-width:200px;"/>
             </div>
             {% endif %}
