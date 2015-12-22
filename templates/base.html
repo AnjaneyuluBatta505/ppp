@@ -17,6 +17,10 @@
         <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet" type="text/css">
         <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
         <link rel="shortcut icon" href="{%static 'images/favicon.ico' %}" type="image/x-icon">
+        <script src="{% static 'js/MathJax.js' %}?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/javascript" src="/static/js/ckeditor/ckeditor.js"></script>
+      <!--<script type='text/javascript' src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+      <!--<script type='text/javascript' src="http://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.3.2/ckeditor.js"></script>-->
     {% block css %}
     {% endblock %}
    <!-- end -->
@@ -78,9 +82,11 @@
     <br>
     <!--end -->
     <!-- jQuery plugins -->
+
     <script src="{% static 'jquery/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/MathJax.js' %}"></script>
+
+
     {% block javascript %}
     {% endblock %}
     <!-- end -->

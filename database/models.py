@@ -60,7 +60,7 @@ class Question(models.Model):
     sub_topic = models.ForeignKey(SubTopic,related_name='questions')
     level = models.CharField(choices=QLEVEL, max_length=10)
     reference = models.ForeignKey('self', null=True, blank=True, related_name='linked_questions')
-    date = models.ManyToManyField(Year)
+    date = models.ManyToManyField(Year, blank=True)
 
     def __str__(self):
         return str(self.sub_topic.topic)
