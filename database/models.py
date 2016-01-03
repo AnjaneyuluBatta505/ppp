@@ -1,6 +1,7 @@
 from django.db import models
 from random import random
 
+
 QLEVEL = (
     ('L1', 'LEVEL1'),
     ('L2', 'LEVEL2'),
@@ -27,9 +28,9 @@ class Company(models.Model):
     founded = models.ForeignKey(Year, blank=True)
     founders = models.CharField(max_length=50, blank=True, null=True)
     headquarters = models.CharField(max_length=50, blank=True, null=True)
-    about = models.CharField(max_length=2000, null=True)
-    history = models.CharField(max_length=2000, null=True)
-    why_join = models.CharField(max_length=2000, null=True)
+    about = models.CharField(max_length=10000, null=True)
+    history = models.CharField(max_length=10000, null=True)
+    why_join = models.CharField(max_length=10000, null=True)
     def __str__(self):
         return self.name
 
@@ -54,7 +55,7 @@ class SubTopic(models.Model):
 
 
 class Question(models.Model):
-    data = models.CharField(max_length=1000, blank=True, null=True)
+    data = models.CharField(max_length=10000, blank=True, null=True)
     image = models.ImageField(upload_to=url, blank=True, null=True)
     company = models.ManyToManyField(Company, blank=True)
     sub_topic = models.ForeignKey(SubTopic,related_name='questions')
@@ -63,11 +64,15 @@ class Question(models.Model):
     date = models.ManyToManyField(Year, blank=True)
 
     def __str__(self):
-        return str(self.sub_topic.topic)
+        import html5lib
+        from lxml import html
+        doc = html.fromstring(self.data)
+        question_text = str(doc.text_content().encode('utf-8'))
+        return str(self.sub_topic.topic)+":"+question_text[:100]
 
 
 class Choice(models.Model):
-    description = models.CharField(max_length=100)
+    description = models.CharField(max_length=10000)
     question = models.ForeignKey(Question, related_name='choices')
     image = models.ImageField(upload_to=url, blank=True, null=True)
     is_answer = models.BooleanField(default=False)
@@ -77,7 +82,7 @@ class Choice(models.Model):
 
 
 class Answer(models.Model):
-    explination = models.CharField(max_length=2000)
+    explination = models.CharField(max_length=10000)
     image = models.ImageField(upload_to=url, blank=True, null=True)
     question = models.ForeignKey(Question, related_name='answers')
 

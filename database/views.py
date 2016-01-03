@@ -25,8 +25,11 @@ def topic(request, slug):
 def sub_topic(request, topic, sub_topic):
     topic = Topic.objects.get(slug=topic)
     subtopic = topic.subtopics.get(slug=sub_topic)
-    questions = subtopic.questions.all()
-    paginator = Paginator(questions, 2) # Show 25 contacts per page
+    questions = subtopic.questions.filter(reference=None)
+    no_of_items = 10
+    if 'passage-correction' == sub_topic:
+        no_of_items = 3
+    paginator = Paginator(questions, no_of_items) # Show 25 contacts per page
     page = request.GET.get('page')
     try:
         questions = paginator.page(page)
@@ -44,7 +47,7 @@ def interview(request):
     topic = Topic.objects.get(slug='interview')
     subtopic = topic.subtopics.get(slug='interview')
     questions = subtopic.questions.all()
-    paginator = Paginator(questions, 2) # Show 25 contacts per page
+    paginator = Paginator(questions, 10) # Show 25 contacts per page
     page = request.GET.get('page')
     try:
         questions = paginator.page(page)
