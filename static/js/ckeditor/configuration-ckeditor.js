@@ -9,7 +9,6 @@
 			});
 			$('.add-row').on('click',function(){
 			    $text_area = $(this).closest('textarea');
-			    alert($text_area.attr('id'))
 				CKEDITOR.replace( $text_area.attr('id'),
 					{extraPlugins: 'mathjax'}
 				);
