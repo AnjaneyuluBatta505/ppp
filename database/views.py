@@ -20,15 +20,23 @@ def company(request, slug):
 
 def topic(request, slug):
     topic = Topic.objects.get(slug=slug)
+    # add seo title and description
+    #
+    #
     return render(request, 'topic.html',{'topic':topic})
 
 def sub_topic(request, topic, sub_topic):
     topic = Topic.objects.get(slug=topic)
     subtopic = topic.subtopics.get(slug=sub_topic)
+    # add seo title and description
+    #
+    #
     questions = subtopic.questions.filter(reference=None)
     no_of_items = 10
     if 'passage-correction' == sub_topic:
         no_of_items = 3
+    if 'reading-comprehention' == sub_topic:
+        no_of_items = 1
     paginator = Paginator(questions, no_of_items) # Show 25 contacts per page
     page = request.GET.get('page')
     try:
@@ -96,7 +104,19 @@ def robot(request):
     return render_to_response("robots.txt",content_type="text")
 
 def sitemap(request):
-    return render_to_response("sitemap.xml",content_type="text/xml")
+    domain = None
+    if request.is_secure():
+        domain = "https://" + request.META['HTTP_HOST']
+    else:
+        domain = "http://" + request.META['HTTP_HOST']
+    print "sitemap", domain
+    data ={
+        'url' : domain,
+        'topics' : Topic.objects.all(),
+        'companies': Company.objects.all(),
+        'paginate_len' : range(2,11)
+    }
+    return render_to_response("sitemap.xml",data,content_type="text/xml")
 
 def google_verification(request):
     return render_to_response("googlea95613a6b3c4ff8a.html", content_type="text/html")

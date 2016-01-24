@@ -1,4 +1,3 @@
 User-agent: *
-Disallow:
-Disallow: /cgi-bin/
-Sitemap: http://practiceplacementpapers.herokuapp.com/
+Allow: /
+Sitemap: http://practiceplacementpapers.herokuapp.com/sitemap.xml

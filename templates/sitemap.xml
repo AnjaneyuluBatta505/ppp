@@ -1,32 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="{{ url }}/static/files/xml-sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url>
-  <loc>http://practiceplacementpapers.herokuapp.com/</loc>
-  <loc>http://practiceplacementpapers.herokuapp.com</loc>
-  <priority>1.0</priority>
-</url>
-<url>
-  <loc>http://practiceplacementpapers.herokuapp.com/practice/aptitude/</loc>
-</url>
-<url>
-  <loc>http://practiceplacementpapers.herokuapp.com/practice/reasoning/</loc>
-</url>
-<url>
-  <loc>http://practiceplacementpapers.herokuapp.com/practice/english/</loc>
-</url>
-<url>
-  <loc>https://practiceplacementpapers.herokuapp.com/interview/tips/</loc>
-</url>
-<url>
-  <loc>https://practiceplacementpapers.herokuapp.com/practice/puzzles/</loc>
-</url>
-<url>
-  <loc>https://practiceplacementpapers.herokuapp.com/practice/reasoning/</loc>
-</url>
-<url>
-  <loc>https://practiceplacementpapers.herokuapp.com/contact-us/</loc>
-</url>
-<url>
-  <loc>https://practiceplacementpapers.herokuapp.com/privacy-policy/</loc>
-</url>
+  <url>
+    <loc>{{ url }}</loc>
+    <lastmod>{% now "d-m-Y" %}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1</priority>
+
+  </url>
+    {% for topic in topics %}
+     {% if 'interview' not in topic.slug %}
+        <url>
+            <loc>{{ url }}{% url 'ppp:topic' topic.slug %}</loc>
+            <lastmod>{% now "d-m-Y" %}</lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>1</priority>
+        </url>
+      {% for subtopic in topic.subtopics.all %}
+       {% if 'interview' not in subtopic.slug %}
+        <url>
+            <loc>{{ url }}{% url 'ppp:sub_topic_test' topic.slug  subtopic.slug %}</loc>
+            <lastmod>{% now "d-m-Y" %}</lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>1</priority>
+        </url>
+        {% for num in paginate_len %}
+            <url>
+                <loc>{{ url }}{% url 'ppp:sub_topic_test' topic.slug  subtopic.slug %}?page={{ num }}</loc>
+                <lastmod>{% now "d-m-Y" %}</lastmod>
+                <changefreq>weekly</changefreq>
+                <priority>1</priority>
+            </url>
+        {% endfor %}
+       {% endif %}
+      {% endfor %}
+     {% endif %}
+    {% endfor %}
+    <url>
+        <loc>{{ url }}{% url 'ppp:interview' %}</loc>
+        <lastmod>{% now "d-m-Y" %}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1</priority>
+    </url>
+    {% for company in companies %}
+        <url>
+            <loc>{{ url }}{% url 'ppp:company' company.slug %}</loc>
+            <lastmod>{% now "d-m-Y" %}</lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>1</priority>
+
+        </url>
+      {% for year in  company.year_papers %}
+        <url>
+            <loc>{{ url }}{% url 'ppp:company_test_view' company.slug year %}</loc>
+            <lastmod>{% now "d-m-Y" %}</lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>1</priority>
+    </url>
+        <url>
+            <loc>{{ url }}{% url 'ppp:company_test_start' company.slug year %}</loc>
+            <lastmod>{% now "d-m-Y" %}</lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>1</priority>
+    </url>
+      {% endfor %}
+    {% endfor %}
+    <url>
+        <loc>{{ url }}{% url 'ppp:privacy_policy' %}</loc>
+        <lastmod>{% now "d-m-Y" %}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1</priority>
+  </url>
 </urlset>
