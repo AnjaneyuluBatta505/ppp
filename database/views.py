@@ -104,12 +104,9 @@ def robot(request):
     return render_to_response("robots.txt",content_type="text")
 
 def sitemap(request):
-    domain = None
+    domain = "http://" + request.META['HTTP_HOST']
     if request.is_secure():
         domain = "https://" + request.META['HTTP_HOST']
-    else:
-        domain = "http://" + request.META['HTTP_HOST']
-    print "sitemap", domain
     data ={
         'url' : domain,
         'topics' : Topic.objects.all(),

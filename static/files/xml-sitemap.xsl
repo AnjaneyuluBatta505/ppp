@@ -21,7 +21,7 @@
 <xsl:if test="sm:urlset/sm:url/image:image">Images </xsl:if>
 <xsl:if test="sm:urlset/sm:url/news:news">News </xsl:if>
 <xsl:if test="sm:urlset/sm:url/video:video">Video </xsl:if>
-XML Sitemap
+PracticePlacementPapers Sitemap
 <xsl:if test="sm:sitemapindex"> Index</xsl:if>
 </title>
 <style type="text/css">
