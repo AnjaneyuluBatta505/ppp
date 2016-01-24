@@ -34,8 +34,13 @@ class Company(models.Model):
     def __str__(self):
         return self.name
 
-    # def founded(self):
-    #     return self.founded
+    def year_papers(self):
+        years = Year.objects.all()
+        paper_years = []
+        for year in years:
+            if Question.objects.filter(company__id=self.id, date=year):
+                paper_years.append(year)
+        return paper_years
 
 class Topic(models.Model):
     name = models.CharField(max_length=50)
@@ -57,7 +62,7 @@ class SubTopic(models.Model):
 class Question(models.Model):
     data = models.CharField(max_length=10000, blank=True, null=True)
     image = models.ImageField(upload_to=url, blank=True, null=True)
-    company = models.ManyToManyField(Company, blank=True)
+    company = models.ManyToManyField(Company, blank=True, related_name="questions")
     sub_topic = models.ForeignKey(SubTopic,related_name='questions')
     level = models.CharField(choices=QLEVEL, max_length=10)
     reference = models.ForeignKey('self', null=True, blank=True, related_name='linked_questions')
