@@ -3,8 +3,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>{{ url }}</loc>
-    <lastmod>{% now "d-m-Y" %}</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>{{ modified|date:"Y-m-d" }}</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1</priority>
 
   </url>
@@ -12,24 +12,24 @@
      {% if 'interview' not in topic.slug %}
         <url>
             <loc>{{ url }}{% url 'ppp:topic' topic.slug %}</loc>
-            <lastmod>{% now "d-m-Y" %}</lastmod>
-            <changefreq>weekly</changefreq>
+            <lastmod>{{ modified|date:"Y-m-d" }}</lastmod>
+            <changefreq>daily</changefreq>
             <priority>1</priority>
         </url>
       {% for subtopic in topic.subtopics.all %}
        {% if 'interview' not in subtopic.slug %}
         <url>
             <loc>{{ url }}{% url 'ppp:sub_topic_test' topic.slug  subtopic.slug %}</loc>
-            <lastmod>{% now "d-m-Y" %}</lastmod>
-            <changefreq>weekly</changefreq>
+            <lastmod>{{ modified|date:"Y-m-d" }}</lastmod>
+            <changefreq>daily</changefreq>
             <priority>1</priority>
         </url>
         {% for num in paginate_len %}
             <url>
                 <loc>{{ url }}{% url 'ppp:sub_topic_test' topic.slug  subtopic.slug %}?page={{ num }}</loc>
-                <lastmod>{% now "d-m-Y" %}</lastmod>
-                <changefreq>weekly</changefreq>
-                <priority>1</priority>
+                <lastmod>{{ modified|date:"Y-m-d" }}</lastmod>
+                <changefreq>daily</changefreq>
+                <priority>0.5</priority>
             </url>
         {% endfor %}
        {% endif %}
@@ -38,37 +38,37 @@
     {% endfor %}
     <url>
         <loc>{{ url }}{% url 'ppp:interview' %}</loc>
-        <lastmod>{% now "d-m-Y" %}</lastmod>
-        <changefreq>weekly</changefreq>
+        <lastmod>{{ modified|date:"Y-m-d" }}</lastmod>
+        <changefreq>daily</changefreq>
         <priority>1</priority>
     </url>
     {% for company in companies %}
         <url>
             <loc>{{ url }}{% url 'ppp:company' company.slug %}</loc>
-            <lastmod>{% now "d-m-Y" %}</lastmod>
-            <changefreq>weekly</changefreq>
+            <lastmod>{{ modified|date:"Y-m-d" }}</lastmod>
+            <changefreq>daily</changefreq>
             <priority>1</priority>
 
         </url>
       {% for year in  company.year_papers %}
         <url>
             <loc>{{ url }}{% url 'ppp:company_test_view' company.slug year %}</loc>
-            <lastmod>{% now "d-m-Y" %}</lastmod>
-            <changefreq>weekly</changefreq>
+            <lastmod>{{ modified|date:"Y-m-d" }}</lastmod>
+            <changefreq>daily</changefreq>
             <priority>1</priority>
     </url>
         <url>
             <loc>{{ url }}{% url 'ppp:company_test_start' company.slug year %}</loc>
-            <lastmod>{% now "d-m-Y" %}</lastmod>
-            <changefreq>weekly</changefreq>
+            <lastmod>{{ modified|date:"Y-m-d" }}</lastmod>
+            <changefreq>daily</changefreq>
             <priority>1</priority>
     </url>
       {% endfor %}
     {% endfor %}
     <url>
         <loc>{{ url }}{% url 'ppp:privacy_policy' %}</loc>
-        <lastmod>{% now "d-m-Y" %}</lastmod>
-        <changefreq>weekly</changefreq>
+        <lastmod>{{ modified|date:"Y-m-d" }}</lastmod>
+        <changefreq>daily</changefreq>
         <priority>1</priority>
   </url>
 </urlset>

@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, render_to_response
 from .models import *
-
+from practiceplacementpapers import settings
 # Create your views here.
 
 def home(request):
@@ -105,13 +105,22 @@ def robot(request):
 
 def sitemap(request):
     domain = "http://" + request.META['HTTP_HOST']
+    import os.path, time
+    import datetime
+    filedb = settings.BASE_DIR+"/static/db.sqlite3"
+    modified = datetime.datetime.strptime(time.ctime(os.path.getmtime(filedb)), "%a %b %d %H:%M:%S %Y")
+    created =  datetime.datetime.strptime(time.ctime(os.path.getctime(filedb)), "%a %b %d %H:%M:%S %Y")
+    # print modified, created
+    # print datetime.datetime.strptime(modified, "%a %b %d %H:%M:%S %Y")
     if request.is_secure():
         domain = "https://" + request.META['HTTP_HOST']
     data ={
         'url' : domain,
         'topics' : Topic.objects.all(),
         'companies': Company.objects.all(),
-        'paginate_len' : range(2,11)
+        'paginate_len' : range(2,11),
+        'created': created,
+        'modified': modified
     }
     return render_to_response("sitemap.xml",data,content_type="text/xml")
 
