@@ -69,6 +69,7 @@
             <div class="row footer">
                 <h3>Practice previous year's sample papers</h3>
             </div>
+      {% if paper_years %}
           {% for year in paper_years %}
             <div class="col-lg-4">
                 <table class="no_border">
@@ -81,6 +82,9 @@
                 </table>
             </div>
           {% endfor %}
+      {% else %}
+        <strong> Content not available, it will be uploaded soon!!!</strong>
+      {% endif %}
   </div>
   <div class="col-lg-3 advertisement">
     <!--advertisement-->
