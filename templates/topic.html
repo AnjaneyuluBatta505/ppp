@@ -21,7 +21,7 @@
         </div>
         <div class="col-lg-9" style="min-height:449px;">
         {% for sub_topic in topic.subtopics.all %}
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
                 <li><a href="{% url 'ppp:sub_topic_test' topic=topic.slug sub_topic=sub_topic.slug %}">{{ sub_topic }}</a></li>
             </div>
         {% endfor %}

@@ -27,7 +27,7 @@
             {% endif %}
 
             <div class="col-lg-5">
-                <h3>{{slug|title }}</h3><p>{{ date_slug }}</p>
+                <h3>{{slug|upper }}</h3><p>{{ date_slug }}</p>
             </div>
             {% if not view_test and not request.POST%}
             <div class="col-lg-3">
@@ -45,9 +45,11 @@
         {% csrf_token %}
 {% for topic,questions in test %}
     <div id="{{ topic.slug }}">
+        {% if questions %}
         <div class="col-lg-12 topic">
             <h3>{{ topic|title }}</h3>
         </div>
+        {% endif %}
         <ol>
           {% for question in questions %}
             <!-- question -->
@@ -236,9 +238,11 @@
                 {
                     "category": [
                      {% for topic, questions in test %}
+                       {%if questions %}
                         {
                             "label": "{{ topic.name }}"
                         },
+                        {% endif %}
                      {% endfor %}
                     ]
                 }
