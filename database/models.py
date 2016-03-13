@@ -17,8 +17,12 @@ def url(self, filename):
 class Year(models.Model):
     date = models.DateField(unique=True)
 
+    class Meta:
+        ordering = ['date']
+
     def __str__(self):
         return str(self.date)
+
 
 
 class Company(models.Model):
@@ -46,6 +50,9 @@ class Topic(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField(blank=True, null=True)
 
+    class Meta:
+        ordering = ['name']
+
     def __str__(self):
         return self.name
 
@@ -56,6 +63,9 @@ class SubTopic(models.Model):
     slug = models.SlugField(blank=True, null=True)
     # meta_title = models.CharField(max_length=100, blank=True)
     # meta_description = models.CharField(max_length=200, blank=True)
+
+    class Meta:
+        ordering = ['name']
 
     def __str__(self):
         return self.name
