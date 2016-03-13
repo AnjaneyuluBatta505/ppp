@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, render_to_response
+from django.template import RequestContext
+
 from .models import *
 from practiceplacementpapers import settings
 # Create your views here.
