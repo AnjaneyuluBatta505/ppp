@@ -258,9 +258,11 @@
                     "seriesname": "Total no of questions",
                     "data": [
                       {% for topic, questions in test %}
+                        {%if questions %}
                         {
                             "value": $("#{{ topic.slug }} input[type='checkbox']").length
                         },
+                        {% endif %}
                       {% endfor %}
                     ]
                 },
@@ -268,9 +270,11 @@
                     "seriesname": "No of attempted questions",
                     "data": [
                     {% for topic, questions in test %}
+                       {%if questions %}
                         {
                             "value": $("#{{ topic.slug }} input[type='radio']:checked").length + $("#{{ topic.slug }} .correct ").length
                         },
+                        {%endif%}
                     {% endfor %}
                     ]
                 },
@@ -278,9 +282,11 @@
                     "seriesname": "Correctly answered questions",
                     "data": [
                     {% for topic, questions in test %}
+                       {%if questions %}
                         {
                             "value": $("#{{ topic.slug }} .correct ").length
                         },
+                        {% endif %}
                     {% endfor %}
                     ]
                 }

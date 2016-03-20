@@ -71,10 +71,12 @@
             </div>
       {% if paper_years %}
           {% for year in paper_years %}
-            <div class="col-lg-4">
+            <div class="col-md-12">
                 <table class="no_border">
                     <tr>
-                        <td>{{ year }}</td>
+                        <td> <big>Practice placement paper of </big></td>
+                        <td> <big>  {{ company.name }} </big></td>
+                        <td> {{ year }}</td>
                         <td><a href="{% url 'ppp:company_test_view' slug year %}">view</a></td>
                         <td><a href="{% url 'ppp:company_test_start' slug year %}">Take Test</a></td>
                         <!--<td><a href="#">Download</a></td>-->

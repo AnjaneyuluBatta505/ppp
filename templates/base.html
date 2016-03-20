@@ -54,13 +54,13 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="click to view topics">Technical &#9660;<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#" title="practice c-programming">C Programming</a></li>
-                    <li><a href="#" title="practice database management systems">Database Management</a></li>
-                    <li><a href="#" title="practice operating systems" >Operating Systems</a></li>
+                    <li><a href="{% url 'ppp:technical' 'programming' 'c-language' %}" title="practice c-programming">C Programming</a></li>
+                    <li><a href="{% url 'ppp:technical' 'computer-science' 'database-management-systems' %}" title="practice database management systems">Database Management</a></li>
+                    <li><a href="{% url 'ppp:technical' 'computer-science' 'operating-systems' %}" title="practice operating systems" >Operating Systems</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="#" title="practice data structures">Data Structures</a></li>
-                    <li><a href="#" title="practice algorithms">Algorithms</a></li>
-                    <li><a href="#" title="practice Computer Networks">Computer Networks</a></li>
+                    <li><a href="{% url 'ppp:technical' 'programming' 'data-structures' %}" title="practice data structures">Data Structures</a></li>
+                    <li><a href="{% url 'ppp:technical' 'programming' 'algorithms' %}" title="practice algorithms">Algorithms</a></li>
+                    <li><a href="{% url 'ppp:technical' 'computer-science' 'computer-networks' %}" title="practice Computer Networks">Computer Networks</a></li>
                   </ul>
                 </li>
                 <li role="presentation"><a href="{% url 'ppp:topic' 'puzzles' %}" title="practice puzzles" >Puzzles</a></li>
