@@ -32,7 +32,8 @@ class QuestionAdmin(admin.ModelAdmin):
     form = QuestionForm
     # exclude = []
     inlines = [ChoiceInline, AnswerInline]
-
+    list_filter = ('sub_topic',)
+    search_fields = [('data')]
     class Media:
         js = ('js/ckeditor/ckeditor.js', 'js/ckeditor/configuration-ckeditor.js')
 

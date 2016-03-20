@@ -71,20 +71,40 @@ def interview(request):
     dictctionary =  {'test':test,'slug':topic,'paginator':paginator}
     return render(request, 'interview.html', dictctionary)
 
+
+def technical(request, topic, sub_topic):
+    topic = Topic.objects.get(slug=topic)
+    subtopic = topic.subtopics.get(slug=sub_topic)
+    questions = subtopic.questions.all()
+    paginator = Paginator(questions, 10) # Show 25 contacts per page
+    page = request.GET.get('page')
+    try:
+        questions = paginator.page(page)
+    except PageNotAnInteger:
+        questions = paginator.page(1)
+        request.GET = request.GET.copy()
+        request.GET['page'] = 1
+    except EmptyPage:
+        questions = paginator.page(paginator.num_pages)
+    test=[(subtopic,questions)]
+    dictctionary =  {'test':test,'slug':topic,'paginator':paginator}
+    return render(request, 'technical.html', dictctionary)
+
+
 def company_test_start(request,slug,date_slug):
     questions = Question.objects.filter(company__slug=slug, date=Year.objects.get(date=date_slug))
     test=[]
     for topic in Topic.objects.all().exclude(slug='interview'):
         test.append((topic, questions.filter(sub_topic__in=topic.subtopics.all())))
     dictctionary =  {'test':test,'slug':slug, 'date_slug':date_slug}
-    return render(request, 'add_question.html', dictctionary)
+    return render(request, 'company_test.html', dictctionary)
 
 def company_test_view(request,slug,date_slug):
     questions = Question.objects.filter(company__slug=slug, date=Year.objects.get(date=date_slug))
     test=[]
     for topic in Topic.objects.all().exclude(slug='interview'):
         test.append((topic, questions.filter(sub_topic__in=topic.subtopics.all())))
-    return render(request, 'add_question.html', {'test':test,'slug':slug,'view_test':True,'date_slug':date_slug})
+    return render(request, 'company_test.html', {'test':test,'slug':slug,'view_test':True,'date_slug':date_slug})
 
 def privacy_policy(request):
     return render(request, 'privacy-policy.html')
