@@ -10,6 +10,6 @@ if __name__ == "__main__":
     # output.write(db.read())
     # # output.close()
     
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'practiceplacementpapers.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'practice-placement-papers.settings')
 
     execute_from_command_line(sys.argv)
