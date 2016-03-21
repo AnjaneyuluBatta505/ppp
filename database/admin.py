@@ -1,5 +1,5 @@
 # 2015.10.27 21:42:35 IST
-#Embedded file name: /home/anjaneyulu/Documents/practiceplacementpapers/database/admin.py
+#Embedded file name: /home/anjaneyulu/Documents/practice-placement-papers/database/admin.py
 from django.contrib import admin
 from .models import *
 from .forms import *
