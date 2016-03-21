@@ -11,7 +11,7 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "practiceplacementpapers.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "practice-placement-papers.settings")
 
 from whitenoise.django import DjangoWhiteNoise
 
