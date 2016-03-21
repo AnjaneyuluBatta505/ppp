@@ -4,7 +4,7 @@ from django.shortcuts import render, render_to_response
 from django.template import RequestContext
 
 from .models import *
-from practiceplacementpapers import settings
+from django.conf import settings
 # Create your views here.
 
 def home(request):
@@ -19,7 +19,6 @@ def company(request, slug):
         if Question.objects.filter(company=company,date=year):
             paper_years.append(year)
     return render(request, 'company.html',{'company': company, 'paper_years':paper_years, 'slug':slug})
-
 def topic(request, slug):
     topic = Topic.objects.get(slug=slug)
     # add seo title and description
