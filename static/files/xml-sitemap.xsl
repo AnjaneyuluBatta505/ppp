@@ -21,7 +21,7 @@
 <xsl:if test="sm:urlset/sm:url/image:image">Images </xsl:if>
 <xsl:if test="sm:urlset/sm:url/news:news">News </xsl:if>
 <xsl:if test="sm:urlset/sm:url/video:video">Video </xsl:if>
-PracticePlacementPapers Sitemap
+practice-placement-papers Sitemap
 <xsl:if test="sm:sitemapindex"> Index</xsl:if>
 </title>
 <style type="text/css">
@@ -108,7 +108,7 @@ Total URLs in this sitemap file: <xsl:value-of select="count(sm:urlset/sm:url)"/
 <xsl:apply-templates />
 
 <div id="footer">
-     copyrights @ practiceplacementpapers
+     copyrights @ practice-placement-papers
 </div>
 </div>
 

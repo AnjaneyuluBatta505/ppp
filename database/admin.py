@@ -4,7 +4,7 @@ from django.contrib import admin
 from .models import *
 from .forms import *
 
-admin.site.site_header = 'PracticePlacementPapers Administration'
+admin.site.site_header = 'practice-placement-papers Administration'
 
 class CompanyAdmin(admin.ModelAdmin):
     form = CompanyForm
@@ -16,7 +16,7 @@ class CompanyAdmin(admin.ModelAdmin):
 class ChoiceInline(admin.StackedInline):
     form = ChoiceForm
     model = Choice
-    extra = 6
+    extra = 5
 
     class Media:
         js = ('js/ckeditor/ckeditor.js', 'js/ckeditor/configuration-ckeditor.js')

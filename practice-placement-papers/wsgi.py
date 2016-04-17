@@ -1,5 +1,5 @@
 """
-WSGI config for practiceplacementpapers project.
+WSGI config for practice-placement-papers project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

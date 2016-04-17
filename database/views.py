@@ -147,3 +147,6 @@ def sitemap(request):
 
 def google_verification(request):
     return render_to_response("googlea95613a6b3c4ff8a.html", content_type="text/html")
+
+def bing_verification(request):
+    return render_to_response("BingSiteAuth.xml", content_type="text/html")
