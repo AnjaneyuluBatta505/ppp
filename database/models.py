@@ -35,6 +35,7 @@ class Company(models.Model):
     about = models.CharField(max_length=10000, null=True)
     history = models.CharField(max_length=10000, null=True)
     why_join = models.CharField(max_length=10000, null=True)
+
     def __str__(self):
         return self.name
 
