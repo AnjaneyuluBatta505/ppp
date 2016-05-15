@@ -7,7 +7,7 @@ from .models import *
 from django.conf import settings
 # Create your views here.
 def get_base_url(request):
-    base_url = "http://" + request.META['HTTP_HOST']
+    base_url = "https://" + request.META['HTTP_HOST']
     if request.is_secure():
         base_url = "https://" + request.META['HTTP_HOST']
     return base_url
