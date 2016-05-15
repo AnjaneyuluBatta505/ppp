@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block meta_tags %}
-    <meta name="keywords" content="{% for sub_topic in topic.subtopics.all|slice:':20' %} {{ sub_topic }},{%endfor%}">
-    <meta name="description" content="practice placement papers of all companies for free with solutions, interview tips, resume formats ">
+    <meta name="keywords" content="practice, {{ topic.name }}, questions, answers, explanation, solutions, {% for sub_topic in topic.subtopics.all|slice:':20' %} {{ sub_topic }},{%endfor%}">
+    <meta name="description" content=" {{ topic.name }} questions and answers with detailed explanation for campus interviews, competitive exams and entrance test. Completely solved examples with detailed description and explination to make you easily understood.">
     <meta name="title" content="practice-placement-papers, practice {{ topic.name }} questions and answers">
+{% endblock %}
+{% block title_tags %}
+    <title>Practice Placement Papers | practice {{ topic.name }} questions and answers </title>
 {% endblock %}
 {% block content %}
     <!--content start -->
@@ -22,7 +25,7 @@
         <div class="col-lg-9" style="min-height:449px;">
         {% for sub_topic in topic.subtopics.all %}
             <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
-                <li><a href="{% url 'ppp:sub_topic_test' topic=topic.slug sub_topic=sub_topic.slug %}">{{ sub_topic }}</a></li>
+                <li><a href="{{ base_url }}{% url 'ppp:sub_topic_test' topic=topic.slug sub_topic=sub_topic.slug %}">{{ sub_topic }}</a></li>
             </div>
         {% endfor %}
         </div>

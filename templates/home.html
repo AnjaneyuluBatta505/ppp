@@ -1,10 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block meta_tags %}
-    <meta name="keywords" content="practice placement papers, aptitude, reasoning, english, c language, interview tips, dbms, free online tests of all companies">
-    <meta name="description" content="practice placement papers of all companies for free with solutions, interview tips, resume formats ">
-    <meta name="title" content="practice placement papers">
-{% endblock %}
 {% block content %}
   <!--content start -->
     <div class="container">
@@ -19,13 +14,13 @@
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img src="{% static 'images/practice_placement_papers_1.png'%}" alt="practice placement papers of all companies">
+                        <img src="{{ base_url }}{% static 'images/practice_placement_papers_1.png'%}" alt="practice placement papers of all companies">
                     </div>
                     <div class="item">
-                        <img src="{% static 'images/practice_placement_papers_3.png'%}" alt="practice placement papers and aptitude questions">
+                        <img src="{{ base_url }}{% static 'images/practice_placement_papers_3.png'%}" alt="practice placement papers and aptitude questions">
                     </div>
                     <div class="item">
-                        <img src="{% static 'images/practice_placement_papers_2.png'%}" alt="practice placement papers and interview tips">
+                        <img src="{{ base_url }}{% static 'images/practice_placement_papers_2.png'%}" alt="practice placement papers and interview tips">
                     </div>
                 </div>
                 <!-- Controls -->
@@ -45,7 +40,7 @@
         <div class="row companies_container">
 
         {% for company in companies %}
-          <a href="{% url 'ppp:company' company.slug %}" title="{{ company.slug }} placement papers">
+          <a href="{{ base_url }}{% url 'ppp:company' company.slug %}" title="{{ company.slug }} placement papers">
             <div id="row" class="company col-lg-1 col-md-3 col-sm-6 col-xs-12" >
                 <h4>{{ company.name }}</h4>
                 <table style="display:block;">
