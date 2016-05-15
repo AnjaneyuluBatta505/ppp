@@ -2,8 +2,11 @@
 {% load staticfiles %}
 {% block meta_tags %}
     <meta name="keywords" content="practice placement papers, aptitude, reasoning, english, c language, interview tips, dbms, free online tests, questions with solutions">
-    <meta name="description" content="Practice placement papers and questions with answers and explanation for free. practice {{ slug }} tests online free">
-    <meta name="title" content="Practice {{slug}} previous questions and answers of all companies ">
+    <meta name="description" content=" {{ sub_topic  }} questions and answers with detailed explanation for campus interviews, competitive exams and entrance test. Completely solved examples with detailed description and explination to make you easily understood.">
+    <meta name="title" content="Practice {{ sub_topic }} previous questions and answers of all companies ">
+{% endblock %}
+{% block title_tags %}
+    <title>Practice Placement Papers | practice questions on {{ sub_topic }} </title>
 {% endblock %}
 {% block content %}
     <!--content start -->
@@ -235,8 +238,8 @@
 
 {% block javascript %}
 {% if request.POST %}
-<script src="{% static 'js/fusioncharts.js' %}"></script>
-<script src="{% static 'js/fusioncharts.charts.js' %}"></script>
+<script src="{{ base_url }}{% static 'js/fusioncharts.js' %}"></script>
+<script src="{{ base_url }}{% static 'js/fusioncharts.charts.js' %}"></script>
 <script>
 
     FusionCharts.ready(function () {

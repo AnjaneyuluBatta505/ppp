@@ -7,19 +7,19 @@
     <meta name="author" content="Anjaneyulu Batta" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8;" />
     {% block meta_tags %}
-    <meta name="keywords" content="practice placement papers, aptitude, reasoning, english, c language, interview tips, dbms, free online tests, questions">
-    <meta name="description" content="practice placement papers of all companies for free with solutions, interview tips, resume formats ">
+    <meta name="keywords" content="practice placement papers, aptitude, reasoning, english, c language, interview, tips, dbms, resume, free, online, tests, questions,  placement, papers, answers, explanation, interview, exam, solutions, examples, test, quiz, pdf, download">
+    <meta name="description" content="Practicing previous years placement papers is a best idea to know aout the exam pattern, time limit for the exam, how questions are being asked? and your weak, stong areas. How much time are you taking to solve a question ? so, practice to get placed.">
     <meta name="title" content="practice placement papers">
     {% endblock %}
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% block title_tags %}
-    <title>Practice Placement Papers | Interview Tips | Aptitude Reasoning English Technical Quesions</title>
+    <title>Practice Placement Papers - Interview-Resume Tips | Aptitude,Reasoning,English,Technical Quesions</title>
     {% endblock %}
     <!-- Bootstrap  -->
-        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
-        <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet" type="text/css">
-        <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
-        <link rel="shortcut icon" href="{%static 'images/favicon.ico' %}" type="image/x-icon">
+        <link href="{{ base_url }}{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+        <link href="{{ base_url }}{% static 'css/font-awesome.css' %}" rel="stylesheet" type="text/css">
+        <link href="{{ base_url }}{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="{{ base_url }}{%static 'images/favicon.ico' %}" type="image/x-icon">
       <!--<script type='text/javascript' src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
       <!--<script type='text/javascript' src="//cdnjs.cloudflare.com/ajax/libs/ckeditor/4.3.2/ckeditor.js"></script>-->
     {% block css %}
@@ -47,24 +47,24 @@
   <nav class="nav-menu container">
         <div class="container">
             <ul class="nav nav-tabs ">
-                <li role="presentation"><a href="{% url 'ppp:home'%}">Home</a></li>
-                <li role="presentation"><a href="{% url 'ppp:topic' 'aptitude' %}" title="practice aptitude">Aptitude</a></li>
-                <li role="presentation"><a href="{% url 'ppp:topic' 'reasoning' %}" title="practice reasoning">Reasoning</a></li>
-                <li role="presentation"><a href="{% url 'ppp:topic' 'english' %}" title="practice english">English</a></li>
+                <li role="presentation"><a href="{{ base_url }}{% url 'ppp:home'%}">Home</a></li>
+                <li role="presentation"><a href="{{ base_url }}{% url 'ppp:topic' 'aptitude' %}" title="practice aptitude">Aptitude</a></li>
+                <li role="presentation"><a href="{{ base_url }}{% url 'ppp:topic' 'reasoning' %}" title="practice reasoning">Reasoning</a></li>
+                <li role="presentation"><a href="{{ base_url }}{% url 'ppp:topic' 'english' %}" title="practice english">English</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="click to view topics">Technical &#9660;<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="{% url 'ppp:technical' 'programming' 'c-language' %}" title="practice c-programming">C Programming</a></li>
-                    <li><a href="{% url 'ppp:technical' 'computer-science' 'database-management-systems' %}" title="practice database management systems">Database Management</a></li>
-                    <li><a href="{% url 'ppp:technical' 'computer-science' 'operating-systems' %}" title="practice operating systems" >Operating Systems</a></li>
+                    <li><a href="{{ base_url }}{% url 'ppp:technical' 'programming' 'c-language' %}" title="practice c-programming">C Programming</a></li>
+                    <li><a href="{{ base_url }}{% url 'ppp:technical' 'computer-science' 'database-management-systems' %}" title="practice database management systems">Database Management</a></li>
+                    <li><a href="{{ base_url }}{% url 'ppp:technical' 'computer-science' 'operating-systems' %}" title="practice operating systems" >Operating Systems</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="{% url 'ppp:technical' 'programming' 'data-structures' %}" title="practice data structures">Data Structures</a></li>
-                    <li><a href="{% url 'ppp:technical' 'programming' 'algorithms' %}" title="practice algorithms">Algorithms</a></li>
-                    <li><a href="{% url 'ppp:technical' 'computer-science' 'computer-networks' %}" title="practice Computer Networks">Computer Networks</a></li>
+                    <li><a href="{{ base_url }}{% url 'ppp:technical' 'programming' 'data-structures' %}" title="practice data structures">Data Structures</a></li>
+                    <li><a href="{{ base_url }}{% url 'ppp:technical' 'programming' 'algorithms' %}" title="practice algorithms">Algorithms</a></li>
+                    <li><a href="{{ base_url }}{% url 'ppp:technical' 'computer-science' 'computer-networks' %}" title="practice Computer Networks">Computer Networks</a></li>
                   </ul>
                 </li>
-                <li role="presentation"><a href="{% url 'ppp:topic' 'puzzles' %}" title="practice puzzles" >Puzzles</a></li>
-                <li role="presentation"><a href="{% url 'ppp:interview' %}" title="interview tips">Interview</a></li>
+                <li role="presentation"><a href="{{ base_url }}{% url 'ppp:topic' 'puzzles' %}" title="practice puzzles" >Puzzles</a></li>
+                <li role="presentation"><a href="{{ base_url }}{% url 'ppp:interview' %}" title="interview tips">Interview</a></li>
                 <a href="https://www.djangoproject.com/" title="developed by django web-framework"><img src="https://www.djangoproject.com/s/img/logos/django-logo-negative.svg" style="width:50px;height:40px;float:right;padding:0px;margin:0px;" alt="developed by django framework"></a>
             </ul>
         </div>
@@ -76,7 +76,7 @@
     <footer class="container">
       <div class="row footer">
         <div class="footer menu">
-            <small>&copy; practice-placement-papers.herokuapp.com  All rights reserved |  <a href="{% url 'ppp:privacy_policy' %}"> Terms of Use | Privacy Policy</a> | Contact us: practice-placement-papers505@gmail.com | Like us on fb, g+, tw</small>
+            <small>&copy; practice-placement-papers.herokuapp.com  All rights reserved |  <a href="{{ base_url }}{% url 'ppp:privacy_policy' %}"> Terms of Use | Privacy Policy</a> | Contact us: practice-placement-papers505@gmail.com | Like us on fb, g+, tw</small>
         </div>
       </div>
     </footer>
@@ -84,8 +84,8 @@
     <!--end -->
     <!-- jQuery plugins -->
 
-    <script src="{% static 'jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{{ base_url }}{% static 'jquery/jquery.min.js' %}"></script>
+    <script src="{{ base_url }}{% static 'js/bootstrap.min.js' %}"></script>
 
     {% block javascript %}
     {% endblock %}
