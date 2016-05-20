@@ -214,8 +214,8 @@
     </li>
 {% with request.GET.page|add:"-5"|slugify|add:":5" as next_pages %}
 {% for i in paginator.page_range|slice:next_pages %}
-    <li>
-        <a href="?page={{ i }}">{{ i }}</a>
+    <li {% if request.GET.page|slugify == i|slugify%}class="active"{% endif %}>
+        <a href="?page={{ i }}" >{{ i }}</a>
     </li>
 {% endfor %}
 {%endwith%}
