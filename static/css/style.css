@@ -290,9 +290,9 @@ h4{
 }
 
 .question.answer{
-    border-top: 1px solid #FFFFFF;
+   /* border-top: 1px solid #FFFFFF;
     border-bottom: 1px solid #FFFFFF;
-
+*/
 }
 .question.explination.title{
     color: #138808;
@@ -361,6 +361,21 @@ h4{
 }
 
 /* end */
+/* HTML MATH */
+td.upper_line { border-top:solid 1px black; }
+table.fraction {
+    text-align: center;
+    vertical-align: middle;
+    margin-top:0.5em;
+    margin-bottom:0.5em;
+    line-height: 2em;
+    }
+.bar{
+text-decoration: overline;
+}
+/*end*/
+
+
 @media (min-width:1200px){
 
 }

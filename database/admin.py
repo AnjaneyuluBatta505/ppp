@@ -16,7 +16,7 @@ class CompanyAdmin(admin.ModelAdmin):
 class ChoiceInline(admin.StackedInline):
     form = ChoiceForm
     model = Choice
-    extra = 5
+    extra = 4
 
     class Media:
         js = ('js/ckeditor/ckeditor.js', 'js/ckeditor/configuration-ckeditor.js')
