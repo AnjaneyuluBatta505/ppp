@@ -73,11 +73,11 @@ class SubTopic(models.Model):
 
 
 class Question(models.Model):
-    data = models.CharField(max_length=10000, blank=True, null=True)
+    data = models.CharField(max_length=10000, blank=True, null=True, unique=True)
     image = models.ImageField(upload_to=url, blank=True, null=True)
     company = models.ManyToManyField(Company, blank=True, related_name="questions")
     sub_topic = models.ForeignKey(SubTopic,related_name='questions')
-    level = models.CharField(choices=QLEVEL, max_length=10)
+    level = models.CharField(choices=QLEVEL, max_length=10, default="L1")
     reference = models.ForeignKey('self', null=True, blank=True, related_name='linked_questions')
     date = models.ManyToManyField(Year, blank=True)
 

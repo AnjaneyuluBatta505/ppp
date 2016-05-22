@@ -8,10 +8,11 @@
 				);
 			});
 			$('.add-row').on('click',function(){
-			    $text_area = $(this).closest('textarea');
-				CKEDITOR.replace( $text_area.attr('id'),
+			    $("textarea").each(function(index,val){
+				CKEDITOR.replace( $(val).attr('id'),
 					{extraPlugins: 'mathjax'}
 				);
+			});
 			});
 	   })	
         })(django.jQuery);
