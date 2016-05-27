@@ -27,24 +27,21 @@ def company(request, slug):
     return render(request, 'company.html',{'company': company, 'paper_years':paper_years, 'slug':slug, 'base_url': get_base_url(request) })
 def topic(request, slug):
     topic = Topic.objects.get(slug=slug)
-    # add seo title and description
-    #
-    #
     return render(request, 'topic.html',{'topic':topic, 'base_url': get_base_url(request) })
 
 def sub_topic(request, topic, sub_topic):
     topic = Topic.objects.get(slug=topic)
     subtopic = topic.subtopics.get(slug=sub_topic)
-    # add seo title and description
-    #
-    #
     questions = subtopic.questions.filter(reference=None)
     no_of_items = 10
     if 'passage-correction' == sub_topic:
         no_of_items = 3
-    if 'reading-comprehention' == sub_topic:
+    elif 'reading-comprehention' == sub_topic:
         no_of_items = 1
-    paginator = Paginator(questions, no_of_items) # Show 25 contacts per page
+    elif 'cubes-and-dices' == sub_topic:
+        no_of_items = 5
+
+    paginator = Paginator(questions, no_of_items)
     page = request.GET.get('page')
     try:
         questions = paginator.page(page)
