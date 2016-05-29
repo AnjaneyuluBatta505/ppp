@@ -213,13 +213,13 @@
       </a>
         {% endif %}
     </li>
-{% with request.GET.page|add:"-5"|slugify|add:":5" as next_pages %}
-{% for i in paginator.page_range|slice:next_pages %}
+      <!--{ % with start=request.GET.page|add:"-5" end=request.GET.page|add:"5"%}-->
+
+{% for i in paginator %}
     <li {% if request.GET.page|slugify == i|slugify%}class="active"{% endif %}>
         <a href="?page={{ i }}" >{{ i }}</a>
     </li>
 {% endfor %}
-{%endwith%}
     <li>
       {% if test.0.1.has_next %}
             <a href="?page={{ test.0.1.next_page_number }}">

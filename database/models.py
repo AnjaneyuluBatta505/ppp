@@ -60,8 +60,8 @@ class Topic(models.Model):
 
 class SubTopic(models.Model):
     topic = models.ForeignKey(Topic, related_name='subtopics')
-    name = models.CharField(max_length=100)
-    slug = models.SlugField(blank=True, null=True)
+    name = models.CharField(max_length=100, unique=True)
+    slug = models.SlugField(blank=True, null=True, unique=True)
     # meta_title = models.CharField(max_length=100, blank=True)
     # meta_description = models.CharField(max_length=200, blank=True)
 
