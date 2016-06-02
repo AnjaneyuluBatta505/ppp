@@ -85,7 +85,7 @@ class Question(models.Model):
         import html5lib
         from lxml import html
         doc = html.fromstring(self.data)
-        question_text = str(doc.text_content().encode('utf-8'))
+        question_text = str(doc.text_content().decode('iso-8859-1').encode('utf8'))
         return str(self.sub_topic.topic)+":"+question_text[:100]
 
 
