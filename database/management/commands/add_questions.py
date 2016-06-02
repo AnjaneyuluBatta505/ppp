@@ -97,139 +97,15 @@ class Command(BaseCommand):
         #     print (ans)
         #     print (explanation)
         import re
-        answers = {
-            '1': 'A',
-            '10': 'A',
-            '100': 'C',
-            '101': 'B',
-            '102': 'A',
-            '103': 'C',
-            '104': 'A',
-            '105': 'A',
-            '106': 'C',
-            '107': 'D',
-            '108': 'D',
-            '109': 'B',
-            '11': 'C',
-            '110': 'C',
-            '111': 'B',
-            '112': 'A',
-            '113': 'A',
-            '114': 'A',
-            '115': 'A',
-            '116': 'A',
-            '117': 'B',
-            '118': 'A',
-            '119': 'A',
-            '12': 'B',
-            '120': 'A',
-            '121': 'A',
-            '122': 'A',
-            '123': 'A',
-            '124': 'A',
-            '13': 'A',
-            '14': 'D',
-            '15': 'D',
-            '16': 'A',
-            '17': 'B',
-            '18': 'B',
-            '19': 'A',
-            '2': 'D',
-            '20': 'D',
-            '21': 'B',
-            '22': 'B',
-            '23': 'A',
-            '24': 'D',
-            '25': 'C',
-            '26': 'A',
-            '27': 'C',
-            '28': 'A',
-            '29': 'A',
-            '3': 'C',
-            '30': 'C',
-            '31': 'B',
-            '32': 'B',
-            '33': 'C',
-            '34': 'A',
-            '35': 'B',
-            '36': 'C',
-            '37': 'D',
-            '38': 'C',
-            '39': 'D',
-            '4': 'B',
-            '40': 'C',
-            '41': 'A',
-            '42': 'A',
-            '43': 'B',
-            '44': 'B',
-            '45': 'C',
-            '46': 'D',
-            '47': 'B',
-            '48': 'A',
-            '49': 'C',
-            '5': 'A',
-            '50': 'C',
-            '51': 'A',
-            '52': 'B',
-            '53': 'D',
-            '54': 'B',
-            '55': 'C',
-            '56': 'A',
-            '57': 'D',
-            '58': 'A',
-            '59': 'B',
-            '6': 'C',
-            '60': 'B',
-            '61': 'C',
-            '62': 'B',
-            '63': 'A',
-            '64': 'D',
-            '65': 'D',
-            '66': 'C',
-            '67': 'C',
-            '68': 'A',
-            '69': 'B',
-            '7': 'A',
-            '70': 'B',
-            '71': 'B',
-            '72': 'B',
-            '73': 'B',
-            '74': 'C',
-            '75': 'C',
-            '76': 'B',
-            '77': 'A',
-            '78': 'B',
-            '79': 'B',
-            '8': 'A',
-            '80': 'D',
-            '81': 'D',
-            '82': 'B',
-            '83': 'D',
-            '84': 'A',
-            '85': 'B',
-            '86': 'D',
-            '87': 'B',
-            '88': 'D',
-            '89': 'C',
-            '9': 'C',
-            '90': 'C',
-            '91': 'D',
-            '92': 'C',
-            '93': 'D',
-            '94': 'A',
-            '95': 'B',
-            '96': 'D',
-            '97': 'B',
-            '98': 'C',
-            '99': 'C'}
-        f = open("/home/anjaneyulu/Documents/raw_ppp/c-mcqs/cprograms.txt", 'r').read()
-        indexes = [m.start() for m in re.finditer('Q.', f)]
+        f = open("/home/anjaneyulu/Documents/raw_ppp/databases/dbms.txt", 'r').read()
+        num = re.compile('Q.[\d]+')
+        indexes = [m.start() for m in re.finditer(num, f)]
         for i in range(len(indexes) - 1):
             start = indexes[i]
             end = indexes[i + 1]
             q = f[start:end]
             # print q
-            idx = q.index("(a)")
+            idx = q.index("(A")
             qs = q[:idx]
             qs = qs.strip()
             chs = q[idx:]
@@ -240,16 +116,27 @@ class Command(BaseCommand):
                 qs = qs.replace("\n", "\n<br>\n")
             qno = rpl[0].split(".")[1]
             qs = qs.replace("Q." + qno, '', 1)
-            # options = chs.split("(")
+            # print(chs)
+            # raw_input()
+            options = chs.split("(")
+            ans = chs.split("Ans:")[1]
+            chs = chs.split("Ans:")[0]
             options = re.compile("\([A-Da-d]\)").split(chs)
-            is_ans = options[ord(answers[qno].lower()) - 96]
+            ac = re.compile("\([A-Da-d]\)")
+            ac = ans.replace("(", "").replace(")", "").strip()
+            print(ac)
+            is_ans = options[ord(ac.lower()) - 96]
             print "*" * 100
             print "question:", qs
             print"question no: ", qno
             print"options:", options
-            sub_topic = SubTopic.objects.get(slug='c-language')
+            print"ans:", is_ans
+            # db entry
+            sub_topic = SubTopic.objects.get(slug='database-management-systems')
             question, create = Question.objects.get_or_create(data=qs,
                                                               sub_topic=sub_topic)
+
+
             for option in options:
                 if option:
                     t = is_ans == option
@@ -257,19 +144,13 @@ class Command(BaseCommand):
                     option = option.strip()
                     if count > 1:
                         option = option.replace("\n", "\n<br>\n")
-
                     Choice.objects.create(description=option,
                                           question=question,
                                           is_answer=t)
-                    # print option
-                    # if t:
-                    #     print ">>yes"
+                    print option
+
             ans = is_ans.strip().replace("\n", "\n<br>\n")
-            # print"answer:", ans
+            print"answer:", ans
             explanation = "<p>" + ans + "</p>"
             Answer.objects.create(explination=explanation,
                                   question=question)
-            # raw_input()
-
-
-
