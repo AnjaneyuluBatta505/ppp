@@ -6,213 +6,233 @@
     <meta name="title" content="Practice {{ slug }} latest paper questions and answers">
 {% endblock %}
 {% block content %}
-    <!--content start -->
-    <div class="container companies clock" >
-        <div class="col-lg-6">
-            {% if not request.POST %}
-            {% if not view_test %}
-            <div class="col-lg-4">
-                <div class="col-lg-3">
-                    <h6>Time</h6>
-                </div>
-
-                <div class="col-lg-3">
-                    <input type="text" name="hour" value="01"/>
-                </div>
-
-                <div class="col-lg-3">
-                    <input type="text" name="minute" value="30"/>
-                </div>
-
-                <div class="col-lg-3">
-                    <input type="text" name="second" value="00"/>
-                </div>
-            </div>
-            {% endif %}
-            {% endif %}
-
-            <div class="col-lg-5">
-                <h3>{{slug|upper }}</h3><p>{{ date_slug }}</p>
-            </div>
-            {% if not view_test and not request.POST%}
-            <div class="col-lg-3">
-                <input type="button" id="startTest" value="Start Test" style="max-width:200px;"/>
-            </div>
-            {% endif %}
-        </div>
-        <div class="col-lg-6">
-              <!-- advertisement-->
-
-        </div>
+    <div class="container-fluid  advert">
+        {% include "advertisements/add-unit-top.html" %}
     </div>
-    <div class="container companies">
-        <div class="col-lg-9">
-            <form action="" method="post" id="test_submit">
-        {% csrf_token %}
-{% for topic,questions in test %}
-    <div id="{{ topic.slug }}">
-        {% if questions %}
-        <div class="col-lg-12 topic">
-            <h3>{{ topic|title }}</h3>
+    <div class="container-fluid no-padding no-margin">
+        <div class="col-lg-2 hidden-sm hidden-xs advert">
+            {% include "advertisements/add-unit-left.html" %}
         </div>
-        {% endif %}
-        <ol>
-          {% for question in questions %}
-            <!-- question -->
-            <div class="col-lg-12 row question">
-                <div>
-                    <li>
-                        {{ question.data|safe }}
-                    </li>
-                  {% if question.image %}
-                    <!-- question help image -->
+        <div class="col-lg-8">
+            <div class="col-lg-12">
                     <div class="col-lg-12">
-                        <img src="{{ question.image.url }}">
-                    </div>
-                  {% endif %}
-                  {% for choice in question.choices.all %}
-                    <!-- choice -->
-                    <div class="col-lg-6 question choice">
-                        <div class="col-lg-12" style="padding:0px;margin:0px;">
-                            <div class="col-lg-12">
-                                <div class="col-lg-2 {% if choice.id|slugify in request.POST.values and choice.is_answer %} correct{% endif %}">
-                                    <input name="{{ question.id }}"  type="{% if choice.is_answer and request.POST %}checkbox{%else%}radio{% endif %}" value="{{ choice.id }}" {% if choice.id|slugify in request.POST.values or request.POST and choice.is_answer %}checked{% endif %}{%if request.POST %} disabled{%endif%} >
-                                </div>
-                                <div class="col-lg-10" >
-                                    {{ choice.description|safe }}
-                                </div>
-                            </div>
-                            {% if choice.image %}
-                            <div class="col-lg-10" >
-                                    <img src="{{ choice.image.url }}" style="width:100%;height:100%;">
-                            </div>
-                            {% endif %}
+                      {% if not request.POST and not view_test %}
+                        <div class="clock">
+                            Time:
                         </div>
-                    </div>
-                    <!--end choice -->
-                  {% endfor %}
-                {% if request.POST %}
-                  {% for answer in question.answers.all %}
-                    <!-- answer -->
-                    <div class="col-lg-12 question ">
-                        <span class="question explination title">
-                            Explination:
-                        </span>
-                      {% if answer.image %}
-                        <!-- help image -->
-                        <div>
-                            <img src="{{ answer.image.url }}">
+                        <div class="clock">
+                            <input type="text" name="hour" value="01" width="10%"/>
                         </div>
-                        <!-- end help image -->
+                        <div class="clock">
+                            <input type="text" name="minute" value="30"/>
+                        </div>
+                        <div class="clock">
+                            <input type="text" name="second" value="00"/>
+                        </div>
                       {% endif %}
-                        <!-- ans explination -->
-                        <span>
-                                {{ answer.explination|safe }}
-                        </span>
-                        <!-- ans explination ends -->
+                       {% if not view_test and not request.POST%}
+                      <div title="click to start test" class="clock">
+                          <button type="button"  id="startTest" title="Start Test">
+                              Start Test
+                          </button>
+                       </div>
+                      {% endif %}
+                      <div class="clock">
+                           <h3><center>Practice {{slug|upper }} Placement Test </center><center><span>{{ date_slug }}</span></center>
+                      </div>
                     </div>
-                    <!-- end answer -->
-                  {% endfor %}
-                {% endif %}
-                </div>
             </div>
-            <!-- question end -->
-             <ol>
-                {% for question in  question.linked_questions.all %}
-                <!-- question -->
-                <div class="col-lg-12 question">
-                    <div>
-                        <li>
-                            {{ question.data|safe }}
-                        </li>
-                      {% if question.image %}
-                        <!-- question help image -->
-                        <div class="col-lg-12">
-                            <img src="{{ question.image.url }}">
-                        </div>
-                      {% endif %}
-                      {% for choice in question.choices.all %}
-                    <!-- choice -->
-                    <div class="col-lg-6 question choice">
-                        <div class="col-lg-12" style="padding:0px;margin:0px;">
-                            <div class="col-lg-12">
-                                <div class="col-lg-2 {% if choice.id|slugify in request.POST.values and choice.is_answer %} correct{% endif %}">
-                                    <input name="{{ question.id }}"  type="{% if choice.is_answer and request.POST %}checkbox{%else%}radio{% endif %}" value="{{ choice.id }}" {% if choice.id|slugify in request.POST.values or request.POST and choice.is_answer %}checked{% endif %}{%if request.POST %} disabled{%endif%} >
-                                </div>
-                                <div class="col-lg-10" >
-                                    {{ choice.description|safe }}
-                                </div>
-                            </div>
-                            {% if choice.image %}
-                            <div class="col-lg-10" >
-                                    <img src="{{ choice.image.url }}" style="width:100%;height:100%;">
-                            </div>
-                            {% endif %}
-                        </div>
+            <div class="col-lg-12">
+            <form action="" method="post" id="test_submit">
+                {% csrf_token %}
+                {% for topic,questions in test %}
+                <div id="{{ topic.slug }}">
+                 {% if questions %}
+                    <hr width="100%">
+                    <div class="col-lg-12 topic" >
+                        <h1> {{ topic|title }}</h1>
                     </div>
-                    <!--end choice -->
-                  {% endfor %}
-                    {% if request.POST %}
-                      {% for answer in question.answers.all %}
-                        <!-- answer -->
+                    <hr width="100%">
+                 {% endif   %}
+                    <ol>
+                    {% for question in questions %}
+                        <!-- question -->
                         <div class="col-lg-12 question">
-                            <span class="question explination title">
-                                Explination:
-                            </span>
-                          {% if answer.image %}
-                            <!-- help image -->
                             <div>
-                                <img src="{{ answer.image.url }}">
+                                <li>
+                                    {{ question.data|safe }}
+                                </li>
+                              {% if question.image %}
+                                <!-- question help image -->
+                                <div class="col-lg-12">
+                                    <img src="{{ question.image.url }}">
+                                </div>
+                              {% endif %}
+                              {% for choice in question.choices.all %}
+                                <!-- choice -->
+                                <div class="col-lg-6">
+                                    <div class="col-lg-12" style="padding:0px;margin:0px;">
+                                        <div class="col-lg-12">
+                                            <div class="inline {% if choice.id|slugify in request.POST.values and choice.is_answer %} correct{% endif %}">
+                                                <input name="{{ question.id }}"  type="{% if choice.is_answer and request.POST %}checkbox{%else%}radio{% endif %}" value="{{ choice.id }}" {% if choice.id|slugify in request.POST.values or request.POST and choice.is_answer %}checked{% endif %}{%if request.POST %} disabled{%endif%} >
+                                            </div>
+                                            <div class="inline" >
+                                                <span>{{ choice.description|safe }}</span>
+                                            </div>
+                                        </div>
+                                        {% if choice.image %}
+                                        <div class="col-lg-10" >
+                                                <img src="{{ choice.image.url }}" style="width:100%;height:100%;">
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <!--end choice -->
+                              {% endfor %}
+                            {% if request.POST %}
+                              {% for answer in question.answers.all %}
+                                <!-- answer -->
+                                <div class="col-lg-12 explination">
+                                    <span class="title">
+                                        Explanation:
+                                    </span>
+                                  {% if answer.image %}
+                                    <!-- help image -->
+                                    <div>
+                                        <img src="{{ answer.image.url }}">
+                                    </div>
+                                    <!-- end help image -->
+                                  {% endif %}
+                                    <!-- ans explination -->
+                                    <span>
+                                            {{ answer.explination|safe }}
+                                    </span>
+                                    <!-- ans explination ends -->
+                                </div>
+                                <!-- end answer -->
+                              {% endfor %}
+                            {% endif %}
                             </div>
-                            <!-- end help image -->
-                          {% endif %}
-                            <!-- ans explination -->
-                            <span>
-                                    {{ answer.explination|safe }}
-                            </span>
-                            <!-- ans explination ends -->
-                        </div>
-                        <!-- end answer -->
-                      {% endfor %}
-                    {% endif %}
-                    </div>
-                </div>
+                             <ol>
+                            {% for question in  question.linked_questions.all %}
+                            <!-- question -->
+                            <div class="col-lg-12">
+                                <div>
+                                    <li>
+                                        {{ question.data|safe }}
+                                    </li>
+                                  {% if question.image %}
+                                    <!-- question help image -->
+                                    <div class="col-lg-12">
+                                        <img src="{{ question.image.url }}">
+                                    </div>
+                                  {% endif %}
+                                  {% for choice in question.choices.all %}
+                                <!-- choice -->
+                                <div class="col-lg-6">
+                                    <div class="col-lg-12" style="padding:0px;margin:0px;">
+                                        <div class="col-lg-12">
+                                            <div class="inline col-lg-2 {% if choice.id|slugify in request.POST.values and choice.is_answer %} correct{% endif %}">
+                                                <input name="{{ question.id }}"  type="{% if choice.is_answer and request.POST %}checkbox{%else%}radio{% endif %}" value="{{ choice.id }}" {% if choice.id|slugify in request.POST.values or request.POST and choice.is_answer %}checked{% endif %}{%if request.POST %} disabled{%endif%} >
+                                            </div>
+                                            <div class="inline col-lg-10" >
+                                                {{ choice.description|safe }}
+                                            </div>
+                                        </div>
+                                        {% if choice.image %}
+                                        <div class="col-lg-10" >
+                                                <img src="{{ choice.image.url }}" style="width:100%;height:100%;">
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <!--end choice -->
+                              {% endfor %}
+                                {% if request.POST %}
+                                  {% for answer in question.answers.all %}
+                                    <!-- answer -->
+                                    <div class="col-lg-12 ">
+                                        <span class="question explination title">
+                                            Explination:
+                                        </span>
+                                      {% if answer.image %}
+                                        <!-- help image -->
+                                        <div>
+                                            <img src="{{ answer.image.url }}">
+                                        </div>
+                                        <!-- end help image -->
+                                      {% endif %}
+                                        <!-- ans explination -->
+                                        <span>
+                                                {{ answer.explination|safe }}
+                                        </span>
+                                        <!-- ans explination ends -->
+                                    </div>
+                                    <!-- end answer -->
+                                  {% endfor %}
+                                {% endif %}
+                                </div>
+                            </div>
 
-                <!-- question end -->
-            {% endfor %}
+                            <!-- question end -->
+                        {% endfor %}
+                                </ol>
+                        </div>
+                        <!-- question end -->
+                      {% endfor %}
                     </ol>
-          {% endfor %}
-        </ol>
+        </div>
+      {% endfor %}
+      {% if not request.POST %}
+      <div class="submit">
+        <button class="btn btn-default" type="submit" disabled> submit test </button>
+      </div>
+      {% endif %}
+      {% if request.POST %}
+        <div class="col-lg-12">
+            <hr>
+                <h1>Preview your {{ slug|upper }} Test Results</h1>
+            <hr>
+        </div>
+        <div id="chart-container">Performance chart</div>
+      {% endif %}
+        </form>
+    <div class="col-lg-12 text-center">
+    <nav>
+      <ul class="pagination">
+        <li>
+           {% if test.0.1.has_previous %}
+                <a href="?page={{ test.0.1.previous_page_number }}">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+            {% endif %}
+        </li>
+          <!--{ % with start=request.GET.page|add:"-5" end=request.GET.page|add:"5"%}-->
+
+    {% for i in paginator %}
+        <li {% if request.GET.page|slugify == i|slugify%}class="active"{% endif %}>
+            <a href="?page={{ i }}" >{{ i }}</a>
+        </li>
+    {% endfor %}
+        <li>
+          {% if test.0.1.has_next %}
+                <a href="?page={{ test.0.1.next_page_number }}">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+          {% endif %}
+        </li>
+      </ul>
+    </nav>
     </div>
-  {% endfor %}
-  {% if not request.POST and not view_test%}
-    <button class="btn btn-default companies submit" type="submit" disabled> submit test </button>
-  {% endif %}
-  {% if request.POST %}
-    <div class="col-lg-12 topic">
-            <h3>Preview Test Results</h3>
     </div>
-    <div id="chart-container">Performance chart</div>
-  {% endif %}
-    </form>
-    </div>
-        <div class="col-lg-3">
-            <!--advertisement-->
-             <!--adds -->
-  <script type="text/javascript">
-    google_ad_client = "ca-pub-8955684300110547";
-    google_ad_slot = "3539505710";
-    google_ad_width = 280;
-    google_ad_height = 600;
-  </script>
-<!-- placement-test -->
-<script type="text/javascript"
-src="//pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
-      <!-- adds -->
+        </div>
+        <div class="col-lg-2 hidden-sm hidden-xs advert">
+            {% include "advertisements/add-unit-right.html" %}
         </div>
     </div>
-
+    <div class="container-fluid advert">
+        {% include "advertisements/add-unit-bottom.html" %}
+    </div>
 {% endblock %}
 
 {% block javascript %}

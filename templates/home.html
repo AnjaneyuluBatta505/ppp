@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block content %}
-  <!--content start -->
-    <div class="container">
+{% block carasol %}
+    <div class="container-fluid">
         <div class="row">
             <div id="carousel-slider-generic" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
@@ -33,88 +32,102 @@
             </div> <!-- Carousel -->
         </div>
     </div>
-    <div class="container companies">
-        <div class="row footer margin ">
-            <h3> About Companies</h3>
-        </div>
-        <div class="row companies_container">
-
+{% endblock %}
+{% block content %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          <h1> Practice placement papers of Companies </h1>
+      </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row  companies-list">
         {% for company in companies %}
-          <a href="{{ base_url }}{% url 'ppp:company' company.slug %}" title="{{ company.slug }} placement papers">
-            <div id="row" class="company col-lg-1 col-md-3 col-sm-6 col-xs-12" >
-                <h4>{{ company.name }}</h4>
-                <table style="display:block;">
+           <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+              <a href="{{ base_url }}{% url 'ppp:company' company.slug %}" title="{{ company.slug }} placement papers">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                      {{ company.name }}
+                  </div>
+                  <table class="table table-condensed">
                     <tr>
-                        <td> CEO </td>
+                        <th> CEO </th>
                         <td> {{ company.ceo }} </td>
                     </tr>
                     <tr>
-                        <td> Founded </td>
+                        <th> Founded </th>
                         <td> {{ company.founded.date|date:"Y" }} </td>
                     </tr>
                     <tr>
-                        <td> Founder(s)</td>
+                        <th> Founder(s)</th>
                         <td> {{ company.founders }} </td>
                     </tr>
                     <tr>
-                        <td> Headquarters </td>
+                        <th> Headquarters </th>
                         <td> {{ company.headquarters }} </td>
                     </tr>
-                </table>
-            </div>
-          </a>
+                  </table>
+                  </div>
+                </a>
+              </div>
         {% endfor %}
         </div>
     </div>
-    <div class="container companies">
-        <div class="row footer margin ">
-            <h3>Learn why do you need skills?</h3>
-        </div>
-        <div class="row ">
-            <div class="col-lg-5 about col-md-3 col-sm-6 col-xs-12">
-                <div class="row header bottom_line">
-                    <span title="Why Aptitude">Why Aptitude?</span>
-                </div>
-                <div class="row details">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          <h1> why do you need skills?</h1>
+      </div>
+    </div>
+    <div class="container-fluid whyskills">
+      <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <div class="panel panel-default">
+                  <div class="panel-heading">
+                      <big title="Why Aptitude">Why Aptitude?</big>
+                  </div>
+                  <div class="panel-body">
                     Aptitude is defined as an innate, learned or acquired ability of an individual to perform certain tasks. Aptitude test decides how a candidate think and solve a problem in a given amount of time. Most of the IT/non-IT companies use aptitude test to filter the candidates. So one must have good problem solving skills in aptitude. Not all have but with practice one can learn Aptitude. That will be useful to step into a candidate's desired company.
-                </div>
-            </div>
-            <div class="about col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                <div class="row header bottom_line">
-                    <span  title="Why Reasoning">Why Reasoning?</span>
-                </div>
-                <div class="row details">
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+             <div class="panel panel-default">
+               <div class="panel-heading">
+                    <big title="Why Aptitude">Why Reasoning? </big>
+               </div>
+               <div class="panel-body">
                     Reasoning allows us to think about logic. Through logic, we avoid the dangers that could potentially undermine our survival. Logical thinking allows us to transform our activities to produce more efficiently and effectively. Reasoning allows one to think effectively and make solutions simple for difficult problems. That's why most of the companies include reasoning in recruitment tests, with practice one can easily learn reasoning to fulfill one's desires.
-                </div>
-            </div>
-            <div class="col-lg-2 about col-md-3 col-sm-6 col-xs-12">
-                <div class="row header bottom_line">
-                    <span title="Why English">Why English?</span>
-                </div>
-                <div class="row details">
+               </div>
+             </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                    <big title="Why English">Why English?</big>
+              </div>
+              <div class="panel-body">
                     English is the world's topmost language. You can find the latest information across the web, mostly in English. When you enter into a company, you have to communicate and express your thoughts with people all over the world, the only way to communicate with them is to use the language English. Sometimes you need to write emails to your higher officials, here also you require English language.
-                </div>
+              </div>
             </div>
-            <div class="about col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                <div class="row header bottom_line">
-                    <span title="Why Programming">Why Programming?</span>
-                </div>
-                <div class="row details">
-                    Programming is important to get through the IT companies. One must know the basic fundamentals of programming concepts like "object oriented programming". Knowing one of the programming languages make easier to learn another. Most of the startups and non-profit organizations are looking for the coders to help in their businesses to search for innovative approaches to finding the simple solutions. That's why programming is important.
-                </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <big title="Why Programming">Why Programming?</big>
+              </div>
+              <div class="panel-body">
+                Programming is important to get through the IT companies. One must know the basic fundamentals of programming concepts like "object oriented programming". Knowing one of the programming languages make easier to learn another. Most of the startups and non-profit organizations are looking for the coders to help in their businesses to search for innovative approaches to finding the simple solutions. That's why programming is important.
+              </div>
             </div>
-            <div class="about col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                <div class="row header bottom_line">
-                    <span title="Why Interview">Why Interview?</span>
-                </div>
-                <div class="row details">
-                    The interview is to test the candidate's knowledge in various areas not only in technical aspect but also candidates moral values, how confident candidate is on his decisions, how he think in critical situations and social effectiveness-skills, interpersonal-presentation,and personal / contextual factors.
-
-                </div>
-            </div>
-        </div>
+          </div>
+          <!--<div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">-->
+            <!--<div class="row">-->
+                <!--<span title="Why Interview">Why Interview?</span>-->
+            <!--</div>-->
+            <!--<div class="row details">-->
+                <!--The interview is to test the candidate's knowledge in various areas not only in technical aspect but also candidates moral values, how confident candidate is on his decisions, how he think in critical situations and social effectiveness-skills, interpersonal-presentation,and personal / contextual factors.-->
+            <!--</div>-->
+          <!--</div>-->
+      </div>
     </div>
 {% endblock %}
-{% block javascript %}
 
-{% endblock %}
