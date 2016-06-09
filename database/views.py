@@ -81,8 +81,20 @@ def interview(request):
         request.GET['page']=1
     except EmptyPage:
         questions = paginator.page(paginator.num_pages)
-    test=[(subtopic,questions)]
-    dictctionary =  {'test':test,'slug':topic,'paginator':paginator}
+    start = int(request.GET['page']) - 5
+    end = int(request.GET['page']) + 5
+    if start < 0:
+        end += abs(start)
+        start = 0
+    elif end > paginator.num_pages:
+        end = paginator.num_pages
+        start = end - 10
+    pages = list(paginator.page_range)[start: end]
+    test = [(subtopic, questions)]
+    dictctionary = {'test': test,
+                    'slug': topic,
+                    'paginator': pages,
+                    'sub_topic': sub_topic}
     return render(request, 'interview.html', dictctionary)
 
 
@@ -100,9 +112,21 @@ def technical(request, topic, sub_topic):
         request.GET['page'] = 1
     except EmptyPage:
         questions = paginator.page(paginator.num_pages)
-    test=[(subtopic,questions)]
-    dictctionary =  {'test':test,'slug':topic,'paginator':paginator, 'sub_topic': subtopic}
-    return render(request, 'technical.html', dictctionary)
+    start = int(request.GET['page']) - 5
+    end = int(request.GET['page']) + 5
+    if start < 0:
+        end += abs(start)
+        start = 0
+    elif end > paginator.num_pages:
+        end = paginator.num_pages
+        start = end - 10
+    pages = list(paginator.page_range)[start: end]
+    test = [(subtopic, questions)]
+    dictctionary = {'test': test,
+                    'slug': topic,
+                    'paginator': pages,
+                    'sub_topic': sub_topic}
+    return render(request, 'subtopic.html', dictctionary)
 
 
 def company_test_start(request,slug,date_slug):

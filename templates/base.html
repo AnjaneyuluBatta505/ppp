@@ -13,7 +13,7 @@
     {% endblock %}
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% block title_tags %}
-    <title>Practice Placement Papers - Interview-Resume Tips | Aptitude,Reasoning,English,Technical Quesions</title>
+    <title>Practice Placement Papers - Aptitude | Reasoning | English | Technical | Interview-Resume Tips | Quesions and Solutions </title>
     {% endblock %}
     <!-- Bootstrap  -->
         <link href="{{ base_url }}{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
@@ -28,32 +28,28 @@
   </head>
   <h1 style="z-index:-999;display:none;">Practice placement papers</h1>
   <body oncontextmenu="return true" onkeypress="return true" onkeydown="return true;">
-    <header name="practice-placement-papers">
-        <div class="container border">
-          <div class="row">
-            <div class="container-fluid header">
-                <div class="col-lg-12 header_title" style="padding:10px;">
-                    <span href="" title="Learn through practice with time constraint">
-                      <span style="color: #FF9933">Practice</span>
-                      <span>Placement</span>
-                      <span style="color: #138808">Papers</span>
-                    </span>
-              </div>
-            </div>
-          </div>
-        </div>
-    </header>
-  <!-- navi-menu -->
-  <nav class="nav-menu container">
-        <div class="container">
-            <ul class="nav nav-tabs ">
-                <li role="presentation"><a href="{{ base_url }}{% url 'ppp:home'%}">Home</a></li>
-                <li role="presentation"><a href="{{ base_url }}{% url 'ppp:topic' 'aptitude' %}" title="practice aptitude">Aptitude</a></li>
-                <li role="presentation"><a href="{{ base_url }}{% url 'ppp:topic' 'reasoning' %}" title="practice reasoning">Reasoning</a></li>
-                <li role="presentation"><a href="{{ base_url }}{% url 'ppp:topic' 'english' %}" title="practice english">English</a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="click to view topics">Technical &#9660;<span class="caret"></span></a>
-                  <ul class="dropdown-menu">
+    <nav class = "navbar navbar-default nav-bar-container" role = "navigation">
+        <div class = "navbar-header">
+          <button type = "button" class = "navbar-toggle"
+             data-toggle = "collapse" data-target = "#example-navbar-collapse">
+             <span class = "sr-only">Toggle navigation</span>
+             <span class = "icon-bar"></span>
+             <span class = "icon-bar"></span>
+             <span class = "icon-bar"></span>
+          </button>
+          <a class = "navbar-brand" href="/">Practice Placement Papers</a>
+       </div>
+       <div class = "collapse navbar-collapse" id = "example-navbar-collapse">
+          <ul class = "nav navbar-nav">
+            <li role="presentation"><a href="{{ base_url }}{% url 'ppp:topic' 'aptitude' %}" title="practice aptitude">Aptitude</a></li>
+            <li role="presentation"><a href="{{ base_url }}{% url 'ppp:topic' 'reasoning' %}" title="practice reasoning">Reasoning</a></li>
+            <li role="presentation"><a href="{{ base_url }}{% url 'ppp:topic' 'english' %}" title="practice english">English</a></li>
+             <li class = "dropdown">
+                <a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">
+                   Technical
+                   <b class = "caret"></b>
+                </a>
+                <ul class="dropdown-menu">
                     <li><a href="{{ base_url }}{% url 'ppp:technical' 'programming' 'c-language' %}" title="practice c-programming">C Programming</a></li>
                     <li><a href="{{ base_url }}{% url 'ppp:technical' 'computer-science' 'database-management-systems' %}" title="practice database management systems">Database Management</a></li>
                     <li><a href="{{ base_url }}{% url 'ppp:technical' 'computer-science' 'operating-systems' %}" title="practice operating systems" >Operating Systems</a></li>
@@ -61,46 +57,80 @@
                     <li><a href="{{ base_url }}{% url 'ppp:technical' 'programming' 'data-structures' %}" title="practice data structures">Data Structures</a></li>
                     <li><a href="{{ base_url }}{% url 'ppp:technical' 'programming' 'algorithms' %}" title="practice algorithms">Algorithms</a></li>
                     <li><a href="{{ base_url }}{% url 'ppp:technical' 'computer-science' 'computer-networks' %}" title="practice Computer Networks">Computer Networks</a></li>
-                  </ul>
-                </li>
-                <li role="presentation"><a href="{{ base_url }}{% url 'ppp:topic' 'puzzles' %}" title="practice puzzles" >Puzzles</a></li>
+                </ul>
+             </li>
+               <li role="presentation"><a href="{{ base_url }}{% url 'ppp:topic' 'puzzles' %}" title="practice puzzles" >Puzzles</a></li>
                 <li role="presentation"><a href="{{ base_url }}{% url 'ppp:interview' %}" title="interview tips">Interview</a></li>
-                <a href="https://www.djangoproject.com/" title="developed by django web-framework"><img src="https://www.djangoproject.com/s/img/logos/django-logo-negative.svg" style="width:50px;height:40px;float:right;padding:0px;margin:0px;" alt="developed by django framework"></a>
+                <li role="presentation">
+                    <a href="https://www.djangoproject.com/" title="developed by django web-framework">
+                        <img src="https://www.djangoproject.com/s/img/logos/django-logo-negative.svg"  class="django-img" alt="developed by django framework"/>
+                    </a>
+                </li>
+          </ul>
+       </div>
+    </nav>
+    {% block carasol %}
+    {% endblock %}
+    {% block content %}
+
+    {% endblock %}
+    <div class="container-fluid no-margin no-padding panel-footer footer">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <span>Practice</span>
+            <ul>
+               <li role="presentation"><a href="{{ base_url }}{% url 'ppp:topic' 'aptitude' %}" title="practice aptitude">Aptitude</a></li>
+                <li role="presentation"><a href="{{ base_url }}{% url 'ppp:topic' 'reasoning' %}" title="practice reasoning">Reasoning</a></li>
+                <li role="presentation"><a href="{{ base_url }}{% url 'ppp:topic' 'english' %}" title="practice english">English</a></li>
             </ul>
         </div>
-    </nav>
-    <!-- navi-menu-end -->
-    {% block content %}
-    {% endblock %}
-    <!--footer -->
-    <footer class="container">
-      <div class="row footer">
-        <div class="footer menu">
-            <small>&copy; practice-placement-papers.herokuapp.com  All rights reserved |  <a href="{{ base_url }}{% url 'ppp:privacy_policy' %}"> Terms of Use | Privacy Policy</a> | Contact us: practice-placement-papers505@gmail.com | Like us on fb, g+, tw</small>
+        <div class="col-lg-4 col-md-4 col-sm-2 col-xs-2">
+            <div id="social">
+                <span>like on:</span>
+                <a class="facebookBtn smGlobalBtn" href="#" ></a>
+                <a class="twitterBtn smGlobalBtn" href="#" ></a>
+                <a class="googleplusBtn smGlobalBtn" href="#" ></a>
+                <a class="linkedinBtn smGlobalBtn" href="#" ></a>
+                <a class="pinterestBtn smGlobalBtn" href="#" ></a>
+                <a class="tumblrBtn smGlobalBtn" href="#" ></a>
+                <a class="rssBtn smGlobalBtn" href="#" ></a>
+            </div>
         </div>
-      </div>
-    </footer>
-    <br>
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+            <span>About us</span>
+            <ul>
+                <li>
+                    <a href="{{ base_url }}{% url 'ppp:privacy_policy' %}"> Terms of Use </a>
+                </li>
+                <li>
+                    <a href="{{ base_url }}{% url 'ppp:privacy_policy' %}"> Privacy Policy</a>
+                </li>
+                 <li>
+                    Contact us at:
+                    <a href="email:practice-placement-papers505@gmail.com">
+                    practice-placement-papers505@gmail.com
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
     <!--end -->
     <!-- jQuery plugins -->
-
     <script src="{{ base_url }}{% static 'jquery/jquery.min.js' %}"></script>
     <script src="{{ base_url }}{% static 'js/bootstrap.min.js' %}"></script>
-
     {% block javascript %}
     {% endblock %}
     <!-- end -->
     <!--google analytics-->
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    <!--<script>-->
+      <!--(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){-->
+      <!--(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),-->
+      <!--m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)-->
+      <!--})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');-->
 
-      ga('create', 'UA-68799124-3', 'auto');
-      ga('send', 'pageview');
+      <!--ga('create', 'UA-68799124-3', 'auto');-->
+      <!--ga('send', 'pageview');-->
 
-    </script>
+    <!--</script>-->
     <!--end-->
 </body>
 </html>

@@ -9,159 +9,110 @@
     <title>Practice Placement Papers | practice interview questions </title>
 {% endblock %}
 {% block content %}
-    <!--content start -->
-    <div class="container companies clock" >
-        <div class="col-lg-12">
-            <!--advertisement-->
-        </div>
+    <div class="container-fluid  advert">
+         {% include "advertisements/add-unit-top.html" %}
     </div>
-    <div class="container companies">
-        <div class="col-lg-9">
-            <form action="" method="post" id="test_submit">
-        {% csrf_token %}
-{% for topic,questions in test %}
-    <div id="{{ topic.slug }}">
-        <div class="col-lg-12 topic">
-            <h3>How to prepare for interview ?</h3>
+    <div class="container-fluid no-padding no-margin">
+        <div class="col-lg-2 hidden-sm hidden-xs advert">
+            {% include "advertisements/add-unit-left.html" %}
         </div>
-        <ol>
-          {% for question in questions %}
-            <!-- question -->
-            <div class="col-lg-12 row question">
-                <div>
-                    <li>
-                        {{ question.data|safe }}
-                    </li>
-                  {% if question.image %}
-                    <!-- question help image -->
-                    <div class="col-lg-12">
-                        <img src="{{ question.image.url }}">
-                    </div>
-                  {% endif %}
-                {% for answer in question.answers.all %}
-                    <!-- answer -->
-                    <div class="col-lg-12 question ">
-                      {% if answer.image %}
-                        <!-- help image -->
-                        <div>
-                            <img src="{{ answer.image.url }}">
-                        </div>
-                        <!-- end help image -->
-                      {% endif %}
-                        <!-- ans explination -->
-                        <span>
-                                {{ answer.explination|safe }}
-                        </span>
-                        <!-- ans explination ends -->
-                    </div>
-                    <!-- end answer -->
-                {% endfor %}
-                </div>
+        <div class="col-lg-8">
+            <div class="col-lg-12">
+              <div class="clock">
+                   <h3><center>Practice {{slug|title }} Questions</center><center><span>{{ date_slug }}</span></center></h3>
+              </div>
             </div>
-            <!-- question end -->
-            {% for question in  question.linked_questions.all %}
-                <!-- question -->
-                <div class="col-lg-12 question">
-                    <div>
-                        <li>
-                            {{ question.data|safe }}
-                        </li>
-                      {% if question.image %}
-                        <!-- question help image -->
-                        <div class="col-lg-12">
-                            <img src="{{ question.image.url }}">
-                        </div>
-                      {% endif %}
-                      {% for choice in question.choices.all %}
-                        <!-- choice -->
-                        <div class="col-lg-6 question choice">
-                            <div class="col-lg-1" >
-                                {% if choice.id|slugify in request.POST.values %}${% endif %}{% if choice.is_answer %}*{% endif %}
-                                <input name="{{ question.id }}" type="radio" value="{{ choice.id }}">
-                            </div>
-                            <div class="col-lg-10" >
-                                {{ choice.description|safe }}
-                            </div>
-                          {% if choice.image %}
-                            <div>
-                                <img src="{{ choice.image.url }}">
-                            </div>
-                          {% endif %}
-                        </div>
-                        <!--end choice -->
-                      {% endfor %}
-                      {% for answer in question.answers.all %}
-                        <!-- answer -->
-                        <div class="col-lg-12 question answer">
-                            <span class="question explination title">
-                                Explination:
-                            </span>
-                          {% if answer.image %}
-                            <!-- help image -->
-                            <div>
-                                <img src="{{ answer.image.url }}">
-                            </div>
-                            <!-- end help image -->
-                          {% endif %}
-                            <!-- ans explination -->
-                            <span>
-                                    {{ answer.explination|safe }}
-                            </span>
-                            <!-- ans explination ends -->
-                        </div>
-                        <!-- end answer -->
-                      {% endfor %}
+            <div class="col-lg-12">
+            <form action="" method="post" id="test_submit">
+                {% csrf_token %}
+                {% for topic,questions in test %}
+                <div id="{{ topic.slug }}">
+                    <hr width="100%">
+                    <div class="col-lg-12 topic" >
+                        <h1>Practice Placement Questions on {{ topic|title }}</h1>
                     </div>
-                </div>
-                <!-- question end -->
-            {% endfor %}
-          {% endfor %}
-        </ol>
+                    <hr width="100%">
+                    {% if not questions %}
+                        <b>Content will be updated soon. Please revisit again after few days</b>
+                    {% endif %}
+                    <ol>
+                    {% for question in questions %}
+                        <!-- question -->
+                        <div class="col-lg-12 question">
+                            <div>
+                                <li>
+                                    {{ question.data|safe }}
+                                </li>
+                              {% if question.image %}
+                                <!-- question help image -->
+                                <div class="col-lg-12">
+                                    <img src="{{ question.image.url }}">
+                                </div>
+                              {% endif %}
+                              {% for answer in question.answers.all %}
+                                <!-- answer -->
+                                <div class="col-lg-12">
+                                    <span class="title">
+                                        Answer:
+                                    </span>
+                                  {% if answer.image %}
+                                    <!-- help image -->
+                                    <div>
+                                        <img src="{{ answer.image.url }}">
+                                    </div>
+                                    <!-- end help image -->
+                                  {% endif %}
+                                    <!-- ans explination -->
+                                    <span>
+                                            {{ answer.explination|safe }}
+                                    </span>
+                                    <!-- ans explination ends -->
+                                </div>
+                                <!-- end answer -->
+                              {% endfor %}
+                            </div>
+                        </div>
+                        <!-- question end -->
+                      {% endfor %}
+                    </ol>
+        </div>
+              {% endfor %}
+            </form>
+    <div class="col-lg-12 text-center">
+    <nav>
+      <ul class="pagination">
+        <li>
+           {% if test.0.1.has_previous %}
+                <a href="?page={{ test.0.1.previous_page_number }}">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+            {% endif %}
+        </li>
+          <!--{ % with start=request.GET.page|add:"-5" end=request.GET.page|add:"5"%}-->
+
+    {% for i in paginator %}
+        <li {% if request.GET.page|slugify == i|slugify%}class="active"{% endif %}>
+            <a href="?page={{ i }}" >{{ i }}</a>
+        </li>
+    {% endfor %}
+        <li>
+          {% if test.0.1.has_next %}
+                <a href="?page={{ test.0.1.next_page_number }}">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+          {% endif %}
+        </li>
+      </ul>
+    </nav>
     </div>
-  {% endfor %}
-<div class="col-lg-12 text-center">
-<nav>
-  <ul class="pagination ">
-    <li>
-       {% if test.0.1.has_previous %}
-            <a href="?page={{ test.0.1.previous_page_number }}">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-        {% endif %}
-    </li>
-{% with request.GET.page|add:"-5"|slugify|add:":5" as next_pages %}
-{% for i in paginator.page_range|slice:next_pages %}
-    <li>
-        <a href="?page={{ i }}">{{ i }}</a>
-    </li>
-{% endfor %}
-{%endwith%}
-    <li>
-      {% if test.0.1.has_next %}
-            <a href="?page={{ test.0.1.next_page_number }}">
-                <span aria-hidden="true">&raquo;</span>
-            </a>
-      {% endif %}
-    </li>
-  </ul>
-</nav>
-</div>
-</div>
-    <div class="col-lg-3 advertisement">
-        <!--advertisement-->
-         <!--adds -->
-  <script type="text/javascript">
-    google_ad_client = "ca-pub-8955684300110547";
-    google_ad_slot = "3539505710";
-    google_ad_width = 280;
-    google_ad_height = 600;
-  </script>
-<!-- placement-test -->
-<script type="text/javascript"
-src="//pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
-      <!-- adds -->
     </div>
-</div>
+        </div>
+        <div class="col-lg-2 hidden-sm hidden-xs advert">
+             {% include "advertisements/add-unit-right.html" %}
+        </div>
+    </div>
+    <div class="container-fluid advert">
+                {% include "advertisements/add-unit-bottom.html" %}
+    </div>
 
 {% endblock %}

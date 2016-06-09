@@ -10,39 +10,30 @@
 {% endblock %}
 {% block content %}
     <!--content start -->
-    <div class="container companies">
-        <div class="col-lg-6">
-            <!--advertisement-->
-        </div>
-        <div class="col-lg-6">
-            <!--advertisement-->
+    <div class="container-fluid advert">
+         {% include "advertisements/add-unit-top.html" %}
+    </div>
+    <div class="panel panel-default no-padding no-margin">
+        <div class="panel-heading">
+            <h1>List of Topics  for {{ topic.name }}</h1>
         </div>
     </div>
-    <div class="container companies topics " >
-        <div class="row footer margin ">
-            <h3>List of Topics  for {{ topic.name }}</h3>
+    <div class="container-fluid no-padding no-margin">
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 hidden-sm hidden-xs advert">
+                    {% include "advertisements/add-unit-left.html" %}
         </div>
-        <div class="col-lg-9" style="min-height:449px;">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
         {% for sub_topic in topic.subtopics.all %}
-            <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
-                <li><a href="{{ base_url }}{% url 'ppp:sub_topic_test' topic=topic.slug sub_topic=sub_topic.slug %}">{{ sub_topic }}</a></li>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <li><a href="{{ base_url }}{% url 'ppp:sub_topic_test' topic=topic.slug sub_topic=sub_topic.slug %}"><h2>{{ sub_topic }}</h2></a></li>
             </div>
         {% endfor %}
         </div>
-        <div class="col-lg-3">
-            <!--advertisement-->
-             <!--adds -->
-  <script type="text/javascript">
-    google_ad_client = "ca-pub-8955684300110547";
-    google_ad_slot = "3539505710";
-    google_ad_width = 280;
-    google_ad_height = 600;
-  </script>
-<!-- placement-test -->
-<script type="text/javascript"
-src="//pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
-      <!-- adds -->
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 hidden-sm hidden-xs advert">
+                 {% include "advertisements/add-unit-right.html" %}
         </div>
+    </div>
+    <div class="container-fluid advert">
+        {% include "advertisements/add-unit-bottom.html" %}
     </div>
 {% endblock %}

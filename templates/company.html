@@ -9,101 +9,77 @@
     <title>Practice Placement Papers | research about company {{ company.name  }} </title>
 {% endblock %}
 {% block content %}
-    <!--content start -->
-    <div class="container companies">
-        <div class="col-lg-6">
-            <table class="no_border">
-                <tr>
-                    <td>
-                        <h3>{{ slug|title|upper}}</h3>
-                    </td>
-                    <td>
-                        <table class="no_border">
-                            <tr>
-                            <td> CEO </td>
-                            <td> {{ company.ceo }} </td>
-                            </tr>
-                            <tr>
-                                <td> Founded </td>
-                                <td> {{ company.founded }} </td>
-                            </tr>
-                            <tr>
-                                <td> Founder(s)</td>
-                                <td> {{ company.founders }} </td>
-                            </tr>
-                            <tr>
-                                <td> Headquarters </td>
-                                <td> {{ company.headquarters }} </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="col-lg-6">
-                <!--advertisement here-->
-        </div>
+<div class="container-fluid no-padding no-margin">
+    <div class="col-lg-12 advert">
+        {% include "advertisements/add-unit-top.html" %}
     </div>
-<div class="container companies">
-  <div class="col-lg-9">
-        <div class="row footer">
-            <h3>About {{ slug|title|upper}}</h3>
+</div>
+ <div class="container-fluid no-padding no-margin">
+        <div class="col-lg-2 hidden-sm hidden-xs advert">
+            {% include "advertisements/add-unit-left.html" %}
         </div>
-            <ul>
-                <li>
-                    <h4>About</h4>
-                    <span>
-                        {{ company.about|safe }}
-                    </span>
-                </li>
-                <li>
-                    <h4>History</h4>
-                    <span>
-                        {{ company.history|safe }}
-                    </span>
-                </li>
-                <li>
-                    <h4>Why to join?</h4>
-                    <span>
-                        {{ company.why_join|safe }}
-                    </span>
-                </li>
-            </ul>
-            <div class="row footer">
-                <h3>Practice previous year's sample papers</h3>
-            </div>
-      {% if paper_years %}
+        <div class="col-lg-8">
+        <div class="row">
+            <hr>
+            <h1>About {{ slug|title|upper}}</h1>
+            <!--<div>-->
+                <!--<div class="inline"><b> CEO:</b><i> {{ company.ceo }} </i></div>-->
+                <!--<div class="inline"><b> Founder(s):</b><i> {{ company.founders }} </i></div>-->
+                <!--<div class="inline"><b> Headquarters:</b><i> {{ company.headquarters }} </i></div>-->
+            <!--</div>-->
+            <hr>
+        </div>
+        <ul>
+            <li>
+                <h4>About</h4>
+
+                <span>
+                    {{ company.about|safe }}
+                </span>
+            </li>
+            <li>
+                <h4>History</h4>
+                <span>
+                    {{ company.history|safe }}
+                </span>
+            </li>
+            <li>
+                <h4>Why to join?</h4>
+                <span>
+                    {{ company.why_join|safe }}
+                </span>
+            </li>
+        </ul>
+        <div class="row">
+            <hr>
+                <h1>Practice previous year's sample papers</h1>
+            <hr>
+        </div>
+        {% if paper_years %}
+        <div class="row">
           {% for year in paper_years %}
-            <div class="col-md-12">
-                <table class="no_border">
-                    <tr>
-                        <td> <big>Practice placement paper of </big></td>
-                        <td> <big>  {{ company.name }} </big></td>
-                        <td> {{ year }}</td>
-                        <td><a href="{{ base_url }}{% url 'ppp:company_test_view' slug year %}">view</a></td>
-                        <td><a href="{{ base_url }}{% url 'ppp:company_test_start' slug year %}">Take Test</a></td>
-                        <!--<td><a href="#">Download</a></td>-->
-                    </tr>
-                </table>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <i> Practice placement paper of <b>{{ company.name }}</b>&nbsp;<emphasize>{{ year }}</emphasize></i>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <a class="advert" href="{{ base_url }}{% url 'ppp:company_test_view' slug year %}">view</a>
+                <a class="advert" href="{{ base_url }}{% url 'ppp:company_test_start' slug year %}">Take Test</a>
+                <a class="advert" href="{{ base_url }}{% url 'ppp:company_test_start' slug year %}">Download</a>
             </div>
           {% endfor %}
-      {% else %}
+        </div>
+        {% else %}
         <strong> Content not available, it will be uploaded soon!!!</strong>
       {% endif %}
   </div>
-  <div class="col-lg-3 advertisement">
-  <!--advertisement-->
-  <!--adds -->
-      <script type="text/javascript">
-        google_ad_client = "ca-pub-8955684300110547";
-        google_ad_slot = "3539505710";
-        google_ad_width = 280;
-        google_ad_height = 600;
-      </script>
-      <!-- placement-test -->
-      <script type="text/javascript" src="//pagead2.googlesyndication.com/pagead/show_ads.js"></script>
-  <!-- adds -->
+  <div class="col-lg-2 hidden-sm hidden-xs advert">
+            {% include "advertisements/add-unit-right.html" %}
   </div>
+</div>
+<div class="container-fluid no-padding no-margin">
+    <div class="col-lg-12 advert">
+        {% include "advertisements/add-unit-bottom.html" %}
+    </div>
 </div>
 
 {% endblock %}
