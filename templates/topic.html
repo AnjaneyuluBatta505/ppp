@@ -25,7 +25,7 @@
         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
         {% for sub_topic in topic.subtopics.all %}
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <li><a href="{{ base_url }}{% url 'ppp:sub_topic_test' topic=topic.slug sub_topic=sub_topic.slug %}"><h2>{{ sub_topic }}</h2></a></li>
+                <a href="{{ base_url }}{% url 'ppp:sub_topic_test' topic=topic.slug sub_topic=sub_topic.slug %}"><h2>{{ sub_topic }}</h2></a>
             </div>
         {% endfor %}
         </div>
