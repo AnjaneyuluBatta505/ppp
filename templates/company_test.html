@@ -48,11 +48,11 @@
                 {% for topic,questions in test %}
                 <div id="{{ topic.slug }}">
                  {% if questions %}
-                    <hr width="100%">
                     <div class="col-lg-12 topic" >
+                        <hr width="100%">
                         <h1> {{ topic|title }}</h1>
+                        <hr width="100%">
                     </div>
-                    <hr width="100%">
                  {% endif   %}
                     <ol>
                     {% for question in questions %}
