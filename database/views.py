@@ -59,6 +59,8 @@ def sub_topic(request, topic, sub_topic):
     elif end > paginator.num_pages:
         end = paginator.num_pages
         start = end-10
+        if start < 0:
+            start = 0
     pages = list(paginator.page_range)[start : end]
     test=[(subtopic,questions)]
     dictctionary =  {'test':test,
