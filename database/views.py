@@ -54,13 +54,9 @@ def sub_topic(request, topic, sub_topic):
     start = int(request.GET['page']) - 5
     end = int(request.GET['page']) + 5
     if start<0 :
-        end += abs(start)
         start = 0
     elif end > paginator.num_pages:
         end = paginator.num_pages
-        start = end-10
-        if start < 0:
-            start = 0
     pages = list(paginator.page_range)[start : end]
     test=[(subtopic,questions)]
     dictctionary =  {'test':test,
@@ -86,11 +82,9 @@ def interview(request):
     start = int(request.GET['page']) - 5
     end = int(request.GET['page']) + 5
     if start < 0:
-        end += abs(start)
         start = 0
     elif end > paginator.num_pages:
         end = paginator.num_pages
-        start = end - 10
     pages = list(paginator.page_range)[start: end]
     test = [(subtopic, questions)]
     dictctionary = {'test': test,
@@ -117,11 +111,9 @@ def technical(request, topic, sub_topic):
     start = int(request.GET['page']) - 5
     end = int(request.GET['page']) + 5
     if start < 0:
-        end += abs(start)
         start = 0
     elif end > paginator.num_pages:
         end = paginator.num_pages
-        start = end - 10
     pages = list(paginator.page_range)[start: end]
     test = [(subtopic, questions)]
     dictctionary = {'test': test,
