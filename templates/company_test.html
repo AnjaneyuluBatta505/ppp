@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% block meta_tags %}
     <meta name="keywords" content="practice placement papers, {{ slug }}, general, questions, aptitude, answers, explanation, solutions, examples, interview, entrance, exam, online, test, quiz, pdf, download, freshers, ebooks">
-    <meta name="description" content=" Practice the latest placement papers of {{ slug }} . Learn and practice the placement papers of {{ slug }} and find out how much you score you get. Be confident before you appear for your next interview and written test of {{ slug }}.">
+    <meta name="description" content="Practice the latest placement papers of {{ slug }} . Learn and practice the placement papers of {{ slug }} and find out how much you score you get. Be confident before you appear for your next interview and written test of {{ slug }}.">
     <meta name="title" content="Practice {{ slug }} latest paper questions and answers">
 {% endblock %}
 {% block content %}
@@ -57,9 +57,9 @@
                     <ol>
                     {% for question in questions %}
                         <!-- question -->
-                        <div class="col-lg-12 question">
+                        <div class="col-lg-12 question" itemscope itemtype="https://schema.org/Question">
                             <div>
-                                <li>
+                                <li itemprop="about">
                                     {{ question.data|safe }}
                                 </li>
                               {% if question.image %}
@@ -70,18 +70,18 @@
                               {% endif %}
                               {% for choice in question.choices.all %}
                                 <!-- choice -->
-                                <div class="col-lg-6">
+                                <div class="col-lg-6" >
                                     <div class="col-lg-12" style="padding:0px;margin:0px;">
                                         <div class="col-lg-12">
                                             <div class="inline {% if choice.id|slugify in request.POST.values and choice.is_answer %} correct{% endif %}">
                                                 <input name="{{ question.id }}"  type="{% if choice.is_answer and request.POST %}checkbox{%else%}radio{% endif %}" value="{{ choice.id }}" {% if choice.id|slugify in request.POST.values or request.POST and choice.is_answer %}checked{% endif %}{%if request.POST %} disabled{%endif%} >
                                             </div>
-                                            <div class="inline" >
+                                            <div class="inline" itemprop="option">
                                                 <span>{{ choice.description|safe }}</span>
                                             </div>
                                         </div>
                                         {% if choice.image %}
-                                        <div class="col-lg-10" >
+                                        <div class="col-lg-10" itemprop="help-image">
                                                 <img src="{{ choice.image.url }}" style="width:100%;height:100%;">
                                         </div>
                                         {% endif %}
@@ -92,19 +92,19 @@
                             {% if request.POST %}
                               {% for answer in question.answers.all %}
                                 <!-- answer -->
-                                <div class="col-lg-12 explination">
+                                <div class="col-lg-12 explination" itemscope itemtype="https://schema.org/Answer">
                                     <span class="title">
                                         Explanation:
                                     </span>
                                   {% if answer.image %}
                                     <!-- help image -->
                                     <div>
-                                        <img src="{{ answer.image.url }}">
+                                        <img src="{{ answer.image.url }}" itemprop="help-image">
                                     </div>
                                     <!-- end help image -->
                                   {% endif %}
                                     <!-- ans explination -->
-                                    <span>
+                                    <span itemprop="about">
                                             {{ answer.explination|safe }}
                                     </span>
                                     <!-- ans explination ends -->
@@ -116,15 +116,15 @@
                              <ol>
                             {% for question in  question.linked_questions.all %}
                             <!-- question -->
-                            <div class="col-lg-12">
+                            <div class="col-lg-12" itemscope itemtype="https://schema.org/Question">
                                 <div>
-                                    <li>
+                                    <li itemprop="about">
                                         {{ question.data|safe }}
                                     </li>
                                   {% if question.image %}
                                     <!-- question help image -->
                                     <div class="col-lg-12">
-                                        <img src="{{ question.image.url }}">
+                                        <img src="{{ question.image.url }}" itemprop="help-image">
                                     </div>
                                   {% endif %}
                                   {% for choice in question.choices.all %}
@@ -135,7 +135,7 @@
                                             <div class="inline col-lg-2 {% if choice.id|slugify in request.POST.values and choice.is_answer %} correct{% endif %}">
                                                 <input name="{{ question.id }}"  type="{% if choice.is_answer and request.POST %}checkbox{%else%}radio{% endif %}" value="{{ choice.id }}" {% if choice.id|slugify in request.POST.values or request.POST and choice.is_answer %}checked{% endif %}{%if request.POST %} disabled{%endif%} >
                                             </div>
-                                            <div class="inline col-lg-10" >
+                                            <div class="inline col-lg-10" itemprop="option">
                                                 {{ choice.description|safe }}
                                             </div>
                                         </div>
@@ -151,7 +151,7 @@
                                 {% if request.POST %}
                                   {% for answer in question.answers.all %}
                                     <!-- answer -->
-                                    <div class="col-lg-12 ">
+                                    <div class="col-lg-12 " itemscope itemtype="https://schema.org/Answer">
                                         <span class="question explination title">
                                             Explination:
                                         </span>
@@ -163,7 +163,7 @@
                                         <!-- end help image -->
                                       {% endif %}
                                         <!-- ans explination -->
-                                        <span>
+                                        <span itemprop="about">
                                                 {{ answer.explination|safe }}
                                         </span>
                                         <!-- ans explination ends -->

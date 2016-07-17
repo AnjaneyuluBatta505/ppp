@@ -62,9 +62,9 @@
                     <ol>
                     {% for question in questions %}
                         <!-- question -->
-                        <div class="col-lg-12 question">
+                        <div class="col-lg-12 question" itemscope itemtype="https://schema.org/Question">
                             <div>
-                                <li>
+                                <li itemprop="about">
                                     {{ question.data|safe }}
                                 </li>
                               {% if question.image %}
@@ -82,7 +82,7 @@
                                                 <input name="{{ question.id }}"  type="{% if choice.is_answer and request.POST %}checkbox{%else%}radio{% endif %}" value="{{ choice.id }}" {% if choice.id|slugify in request.POST.values or request.POST and choice.is_answer %}checked{% endif %}{%if request.POST %} disabled{%endif%} >
                                             </div>
                                             <div class="inline" >
-                                                <span>{{ choice.description|safe }}</span>
+                                                <span itemprop="option">{{ choice.description|safe }}</span>
                                             </div>
                                         </div>
                                         {% if choice.image %}
@@ -97,7 +97,7 @@
                             {% if request.POST %}
                               {% for answer in question.answers.all %}
                                 <!-- answer -->
-                                <div class="col-lg-12 explination">
+                                <div class="col-lg-12 explination" itemscope itemtype="https://schema.org/Answer">
                                     <span class="title">
                                         Explanation:
                                     </span>
@@ -109,7 +109,7 @@
                                     <!-- end help image -->
                                   {% endif %}
                                     <!-- ans explination -->
-                                    <span>
+                                    <span itemprop="about">
                                             {{ answer.explination|safe }}
                                     </span>
                                     <!-- ans explination ends -->
@@ -121,9 +121,9 @@
                              <ol>
                             {% for question in  question.linked_questions.all %}
                             <!-- question -->
-                            <div class="col-lg-12">
+                            <div class="col-lg-12" itemscope itemtype="https://schema.org/Question">
                                 <div>
-                                    <li>
+                                    <li itemprop="about">
                                         {{ question.data|safe }}
                                     </li>
                                   {% if question.image %}
@@ -156,7 +156,7 @@
                                 {% if request.POST %}
                                   {% for answer in question.answers.all %}
                                     <!-- answer -->
-                                    <div class="col-lg-12 explination">
+                                    <div class="col-lg-12 explination" itemscope itemtype="https://schema.org/Answer">
                                         <span class="title">
                                             Explination:
                                         </span>
@@ -168,7 +168,7 @@
                                         <!-- end help image -->
                                       {% endif %}
                                         <!-- ans explination -->
-                                        <span>
+                                        <span itemprop="about">
                                                 {{ answer.explination|safe }}
                                         </span>
                                         <!-- ans explination ends -->
