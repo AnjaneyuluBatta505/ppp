@@ -295,6 +295,10 @@ av>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
     text-decoration: underline;
     text-align: center;
 }
+.title{
+    color:blue;
+    text-decoration: underline;
+}
 /* advertisement */
 .advert{
     margin:00px;
