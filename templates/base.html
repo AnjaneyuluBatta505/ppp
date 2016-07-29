@@ -171,7 +171,6 @@ $("document").ready(function(){
     social_count.facebook = function () {
         count_url = "https://api.facebook.com/method/links.getStats?format=json&urls="+url;
         $.getJSON(count_url, function (response) {
-            console.log(response)
             $('.count.facebook').html(response[0]["share_count"])
         });
         return 0;
