@@ -17,12 +17,12 @@
     <title>Practice Placement Papers - Aptitude | Reasoning | English | Technical | Interview-Resume Tips | Quesions and Solutions </title>
     {% endblock %}
     <!-- Bootstrap  -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
     <link href="{{ base_url }}{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" href="{{ base_url }}{%static 'images/favicon.ico' %}" type="image/x-icon">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>    
     <script type='text/javascript' src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     {% block css %}
     {% endblock %}
@@ -184,14 +184,14 @@ $("document").ready(function(){
         return 0;
     };
     social_count.pinterest = function () {
-        count_url = "http://api.pinterest.com/v1/urls/count.json?callback=?&url="+url
+        count_url = "https://api.pinterest.com/v1/urls/count.json?callback=?&url="+url
         $.getJSON(count_url, function (response) {
                 $('.count.pinterest').html(response.count)
         });
         return 0;
     };
     social_count.reddit = function () {
-        count_url = 'http://www.reddit.com/api/info.json?callback=?&url='+url
+        count_url = 'https://www.reddit.com/api/info.json?callback=?&url='+url
         $.ajax({
             url: count_url,
             type: "GET",
@@ -261,13 +261,13 @@ $("document").ready(function(){
         "reddit": {
             "class":"fa fa-reddit",
             "background": "#2edd17",
-            "url": "http://www.reddit.com/submit?url="+url+"&title="+title,
+            "url": "https://www.reddit.com/submit?url="+url+"&title="+title,
             "count": social_count.reddit()
         },
         "tumblr": {
             "class":"fa fa-reddit",
             "background": "#ec4d13",
-            "url": "http://www.tumblr.com/share/link?url="+url+"&description="+description,
+            "url": "https://www.tumblr.com/share/link?url="+url+"&description="+description,
             "count": social_count.tumblr()
         },
         "twitter": {
