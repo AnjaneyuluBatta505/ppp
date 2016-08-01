@@ -141,9 +141,6 @@ color: #FFEB3B;
           </a>
     </div>
     <!--end -->
-    <!-- jQuery plugins -->
-    <script src="{{ base_url }}{% static 'jquery/jquery.min.js' %}"></script>
-    <script src="{{ base_url }}{% static 'js/bootstrap.min.js' %}"></script>
     {% block javascript %}
     {% endblock %}
     <!-- end -->
@@ -169,7 +166,7 @@ $("document").ready(function(){
     url = window.location.href;
     social_count = new Object();
     social_count.facebook = function () {
-        count_url = "https://api.facebook.com/method/links.getStats?format=json&urls="+url;
+        count_url = "https://api.facebook.com/method/links.getStats?format=jsonp&urls="+url;
         $.getJSON(count_url, function (response) {
             $('.count.facebook').html(response[0]["share_count"])
         });
