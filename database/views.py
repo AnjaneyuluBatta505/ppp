@@ -161,7 +161,8 @@ def sitemap(request):
     import os.path, time
     import datetime
     filedb = settings.BASE_DIR+"/static/db.sqlite3"
-    modified = datetime.datetime.strptime(time.ctime(os.path.getmtime(filedb)), "%a %b %d %H:%M:%S %Y")
+    # modified = datetime.datetime.strptime(time.ctime(os.path.getmtime(filedb)), "%a %b %d %H:%M:%S %Y")
+    modified = datetime.datetime.now() - datetime.timedelta(days=1)
     created =  datetime.datetime.strptime(time.ctime(os.path.getctime(filedb)), "%a %b %d %H:%M:%S %Y")
     data ={
         'topics' : Topic.objects.all(),
