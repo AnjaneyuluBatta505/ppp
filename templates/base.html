@@ -102,6 +102,10 @@ color: #FFEB3B;
     {% block content %}
 
     {% endblock %}
+    <!-- disqus -->
+    {% block disqus %}
+    <div id="disqus_thread"></div>
+    {% endblock %}
     <div class="container-fluid no-margin no-padding panel-footer footer">
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
             <span>Practice</span>
@@ -178,6 +182,14 @@ color: #FFEB3B;
     <!-- end -->
     <script>
 $("document").ready(function(){
+    // disqus code
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = '//practice-placement-papers.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    // end
     title = $("meta[name=title]").attr("content");
     description = $("meta[name=description]").attr("content");
     base_url = window.location.origin;
