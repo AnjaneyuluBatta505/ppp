@@ -11,7 +11,7 @@
 {% block content %}
     <!--content start -->
     <div class="container-fluid advert">
-         {% include "advertisements/amazon/add-unit-bottom.html" %}
+         {% include "advertisements/add-unit-top.html" %}
     </div>
     <div class="panel panel-default no-padding no-margin">
         <div class="panel-heading">
@@ -25,7 +25,7 @@
         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
         {% for sub_topic in topic.subtopics.all %}
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <a href="{{ base_url }}{% url 'ppp:sub_topic_test' topic=topic.slug sub_topic=sub_topic.slug %}"><h2>{{ sub_topic }}</h2></a>
+                <a href="{{ base_url }}{% url 'ppp:reading_sub_topic' topic=topic.slug sub_topic=sub_topic.slug %}"><h2>{{ sub_topic }}</h2></a>
             </div>
         {% endfor %}
         </div>

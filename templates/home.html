@@ -42,31 +42,13 @@
     <div class="container-fluid">
         <div class="row  companies-list">
         {% for company in companies %}
-           <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+           <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
               <a href="{{ base_url }}{% url 'ppp:company' company.slug %}" title="{{ company.slug }} placement papers">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                       {{ company.name }}
                   </div>
-                  <table class="table table-condensed">
-                    <tr>
-                        <th> CEO </th>
-                        <td> {{ company.ceo }} </td>
-                    </tr>
-                    <tr>
-                        <th> Founded </th>
-                        <td> {{ company.founded.date|date:"Y" }} </td>
-                    </tr>
-                    <tr>
-                        <th> Founder(s)</th>
-                        <td> {{ company.founders }} </td>
-                    </tr>
-                    <tr>
-                        <th> Headquarters </th>
-                        <td> {{ company.headquarters }} </td>
-                    </tr>
-                  </table>
-                  </div>
+                </div>
                 </a>
               </div>
         {% endfor %}
@@ -132,4 +114,5 @@
 {% endblock %}
 {% block disqus %}
 {% endblock %}
-
+{% block disqus_code %}
+{% endblock %}
