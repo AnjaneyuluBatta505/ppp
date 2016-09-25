@@ -1,7 +1,7 @@
 import sys
+from django.db import models
 reload(sys)
 sys.setdefaultencoding('utf-8')
-from django.db import models
 
 
 QLEVEL = (
@@ -26,14 +26,9 @@ class Year(models.Model):
         return str(self.date)
 
 
-
 class Company(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField(blank=True, null=True)
-    ceo = models.CharField(max_length=50, blank=True, null=True)
-    founded = models.ForeignKey(Year, blank=True)
-    founders = models.CharField(max_length=50, blank=True, null=True)
-    headquarters = models.CharField(max_length=50, blank=True, null=True)
     about = models.CharField(max_length=10000, null=True)
     history = models.CharField(max_length=10000, null=True)
     why_join = models.CharField(max_length=10000, null=True)
@@ -48,6 +43,7 @@ class Company(models.Model):
             if Question.objects.filter(company__id=self.id, date=year):
                 paper_years.append(year)
         return paper_years
+
 
 class Topic(models.Model):
     name = models.CharField(max_length=50)
@@ -64,6 +60,7 @@ class SubTopic(models.Model):
     topic = models.ForeignKey(Topic, related_name='subtopics')
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(blank=True, null=True, unique=True)
+    reading = models.TextField(null=True)
     # meta_title = models.CharField(max_length=100, blank=True)
     # meta_description = models.CharField(max_length=200, blank=True)
 
@@ -75,20 +72,23 @@ class SubTopic(models.Model):
 
 
 class Question(models.Model):
-    data = models.CharField(max_length=10000, blank=True, null=True, unique=True)
+    data = models.CharField(
+        max_length=10000, blank=True, null=True)
     image = models.ImageField(upload_to=url, blank=True, null=True)
-    company = models.ManyToManyField(Company, blank=True, related_name="questions")
-    sub_topic = models.ForeignKey(SubTopic,related_name='questions')
+    company = models.ManyToManyField(
+        Company, blank=True, related_name="questions")
+    sub_topic = models.ForeignKey(SubTopic, related_name='questions')
     level = models.CharField(choices=QLEVEL, max_length=10, default="L1")
-    reference = models.ForeignKey('self', null=True, blank=True, related_name='linked_questions')
+    reference = models.ForeignKey(
+        'self', null=True, blank=True, related_name='linked_questions')
     date = models.ManyToManyField(Year, blank=True)
 
     def __str__(self):
-        import html5lib
         from lxml import html
         doc = html.fromstring(self.data)
-        question_text = str(doc.text_content())#.decode('iso-8859-1').encode('utf8'))
-        return str(self.sub_topic.topic)+":"+question_text[:100]
+        # .decode('iso-8859-1').encode('utf8'))
+        question_text = str(doc.text_content())
+        return str(self.sub_topic.topic) + ":" + question_text[:100]
 
 
 class Choice(models.Model):

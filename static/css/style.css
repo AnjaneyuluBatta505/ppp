@@ -173,9 +173,8 @@
 }
 .companies-list .panel{
     margin: 2px;
-    min-height:220px;
     text-align:left;
-    margin-left:25px;
+    margin-left: 10px;
 }
 .companies-list .panel table{
     padding:0px;

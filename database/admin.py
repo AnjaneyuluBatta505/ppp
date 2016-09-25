@@ -41,6 +41,15 @@ class SubTopicInline(admin.StackedInline):
     model = SubTopic
     extra = 1
 
+
+class SubTopicAdmin(admin.ModelAdmin):
+    model = SubTopic
+    extra = 1
+
+    class Media:
+        js = ('js/ckeditor/ckeditor.js', 'js/ckeditor/configuration-ckeditor.js')
+
+
 class TopicAdmin(admin.ModelAdmin):
 
     exclude = []
@@ -48,7 +57,7 @@ class TopicAdmin(admin.ModelAdmin):
 
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Topic, TopicAdmin)
-admin.site.register(SubTopic)
+admin.site.register(SubTopic, SubTopicAdmin)
 admin.site.register(Company, CompanyAdmin)
 admin.site.register(Year)
     # decompiled 1 files: 1 okay, 0 failed, 0 verify failed
