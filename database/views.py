@@ -9,10 +9,7 @@ from django.conf import settings
 
 
 def get_base_url(request):
-    base_url = "http://" + request.META["HTTP_HOST"]
-    if request.is_secure():
-        base_url = "https://" + request.META["HTTP_HOST"]
-    return base_url
+    return "//" + request.META["HTTP_HOST"]
 
 
 def home(request):
