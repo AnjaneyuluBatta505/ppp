@@ -45,6 +45,7 @@ class SubTopicInline(admin.StackedInline):
 class SubTopicAdmin(admin.ModelAdmin):
     model = SubTopic
     extra = 1
+    search_fields = [('name')]
 
     class Media:
         js = ('js/ckeditor/ckeditor.js', 'js/ckeditor/configuration-ckeditor.js')

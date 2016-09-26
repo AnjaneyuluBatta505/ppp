@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% block meta_tags %}
     <meta name="keywords" content="practice, {{ topic.name }}, questions, answers, explanation, solutions, {% for sub_topic in topic.subtopics.all|slice:':20' %} {{ sub_topic }},{%endfor%}">
-    <meta name="description" content=" {{ topic.name }} questions and answers with detailed explanation for campus interviews, competitive exams and entrance test. Completely solved examples with detailed description and explination to make you easily understood.">
+    <meta name="description" content=" {{ topic.name }} questions and answers with detailed explanation for campus interviews, competitive exams and entrance test. Completely solved examples with detailed description and explanation to make you easily understood.">
     <meta name="title" content="practice-placement-papers, practice {{ topic.name }} questions and answers">
 {% endblock %}
 {% block title_tags %}
@@ -40,4 +40,27 @@
 {% block disqus %}
 {% endblock %}
 {% block disqus_code %}
+{% endblock %}
+{% block javascript %}
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "item": {
+      "@id": "{{ base_url }}",
+      "name": "Placement Papers"
+    }
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "item": {
+      "@id": "{{ base_url }}{% url 'ppp:topic' slug=topic.slug %}",
+      "name": "{{ topic }}"
+    }
+  }]
+}
+</script>
 {% endblock %}
