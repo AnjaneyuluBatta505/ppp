@@ -116,3 +116,14 @@
 {% endblock %}
 {% block disqus_code %}
 {% endblock %}
+{% block javascript %}
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "WebSite",
+  "name": "Practice Placement Papers",
+  "alternateName": "Practice Placement Questions",
+  "url": "{{ base_url }}"
+}
+</script>
+{% endblock %}

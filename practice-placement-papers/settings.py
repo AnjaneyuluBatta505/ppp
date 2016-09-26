@@ -2,8 +2,8 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'n#%r@ld2uj%-m-=#ptud9^b%0-*qhzj74uueiaafj484)p%zco'
 DEBUG = False
-ALLOWED_HOSTS = ['localhost','127.0.0.1', 'practice-placement-papers.herokuapp.com']
-MEDIA_ROOT = os.path.join(BASE_DIR+'/static/media/')
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'practice-placement-papers.herokuapp.com']
+MEDIA_ROOT = os.path.join(BASE_DIR + '/static/media/')
 MEDIA_URL = '/static/media/'
 DJANGO_SETTINGS_MODULE = 'settings'
 
@@ -63,11 +63,11 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-###### STATIC ASSETS #####
+# ******* STATIC ASSETS ******** #
 
 STATIC_URL = '/static/'
-THUMBNAIL_PRESERVE_FORMAT=True
+THUMBNAIL_PRESERVE_FORMAT = True
 STATIC_ROOT = (os.path.join(BASE_DIR, "static"))
 
-MEDIA_ROOT = os.path.join(BASE_DIR+'/static/media/')
+MEDIA_ROOT = os.path.join(BASE_DIR + '/static/media/')
 MEDIA_URL = '/media/static/'

@@ -240,6 +240,34 @@
 {% endblock %}
 
 {% block javascript %}
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "item": {
+      "@id": "{{ base_url }}",
+      "name": "Placement Papers"
+    }
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "item": {
+      "@id": "{{ base_url }}{% url 'ppp:topic' slug=slug %}",
+      "name": "{{ slug }}"
+    }
+  },{
+    "@type": "ListItem",
+    "position": 3,
+    "item": {
+      "@id": "{{ base_url }}{% url 'ppp:sub_topic_test' topic=slug sub_topic=sub_topic %}",
+      "name": "{{ sub_topic }}"
+    }
+  }]
+}
+</script>
 {% if request.POST %}
 <script src="{{ base_url }}{% static 'js/fusioncharts.js' %}"></script>
 <script src="{{ base_url }}{% static 'js/fusioncharts.charts.js' %}"></script>

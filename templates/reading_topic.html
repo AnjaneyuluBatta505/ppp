@@ -11,7 +11,7 @@
 {% block content %}
     <!--content start -->
     <div class="container-fluid advert">
-         {% include "advertisements/add-unit-top.html" %}
+         {% include "advertisements/amazon/add-unit-bottom.html" %}
     </div>
     <div class="panel panel-default no-padding no-margin">
         <div class="panel-heading">
@@ -40,4 +40,27 @@
 {% block disqus %}
 {% endblock %}
 {% block disqus_code %}
+{% endblock %}
+{% block javascript %}
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "item": {
+      "@id": "{{ base_url }}",
+      "name": "Placement Papers"
+    }
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "item": {
+      "@id": "{{ base_url }}{% url 'ppp:topic' slug=topic.slug %}",
+      "name": "Reading Material {{ topic }}"
+    }
+  }]
+}
+</script>
 {% endblock %}
