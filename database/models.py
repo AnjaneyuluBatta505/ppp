@@ -104,7 +104,7 @@ class Choice(models.Model):
 class Answer(models.Model):
     explination = models.CharField(max_length=10000)
     image = models.ImageField(upload_to=url, blank=True, null=True)
-    question = models.ForeignKey(Question, related_name='answers')
+    question = models.OneToOneField(Question, related_name='answers')
 
     def __str__(self):
         return str(self.question)
