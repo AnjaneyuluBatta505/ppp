@@ -171,7 +171,7 @@ def technical(request, topic, sub_topic):
 
 def company_test_start(request, slug, date_slug):
     questions = Question.objects.filter(
-        company__slug=slug, date=Year.objects.get(date=date_slug))
+        company__slug=slug, date=Year.objects.get(date=date_slug), reference=None)
     test = []
     for topic in Topic.objects.all().exclude(slug="interview"):
         test.append(
@@ -182,12 +182,12 @@ def company_test_start(request, slug, date_slug):
         "date_slug": date_slug,
         "base_url": get_base_url(request)
     }
-    return render(request, "company_test_view.html", context)
+    return render(request, "company_test.html", context)
 
 
 def company_test_view(request, slug, date_slug):
     questions = Question.objects.filter(
-        company__slug=slug, date=Year.objects.get(date=date_slug))
+        company__slug=slug, date=Year.objects.get(date=date_slug), reference=None)
     test = []
     for topic in Topic.objects.all().exclude(slug="interview"):
         test.append(
