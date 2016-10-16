@@ -22,9 +22,6 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
     <link href="{{ base_url }}{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" href="{{ base_url }}{%static 'images/favicon.ico' %}" type="image/x-icon">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>    
-    <script type='text/javascript' src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     {% block css %}
     {% endblock %}
    <!-- end -->
@@ -145,6 +142,13 @@ color: #FFEB3B;
           </a>
     </div>
     <!--end -->
+    {% block js_libraries %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>    
+    {% block mathjax %}
+    <script type='text/javascript' src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    {% endblock %}
+    {% endblock %}
     {% block javascript %}
     {% endblock %}
     <!-- end -->

@@ -94,12 +94,14 @@
                                 <!--end choice -->
                               {% endfor %}
                             {% if request.POST %}
-                              {% for answer in question.answers.all %}
+                              {% with question.answers as answer %}
                                 <!-- answer -->
                                 <div class="col-lg-12 explination">
-                                    <span class="title">
-                                        Explanation:
-                                    </span>
+                                    {% if answer.explination %}
+                                        <span class="title">
+                                            Explanation:
+                                        </span>
+                                      {% endif }
                                   {% if answer.image %}
                                     <!-- help image -->
                                     <div>
@@ -115,7 +117,7 @@
                                 </div>
                                 <!-- end answer -->
                               {% endfor %}
-                            {% endif %}
+                            {% endwith %}
                             </div>
                              <ol>
                             {% for question in  question.linked_questions.all %}
@@ -153,12 +155,14 @@
                                 <!--end choice -->
                               {% endfor %}
                                 {% if request.POST %}
-                                  {% for answer in question.answers.all %}
+                                  {% with question.answers as answer %}
                                     <!-- answer -->
                                     <div class="col-lg-12 ">
-                                        <span class="question explination title">
-                                            Explination:
-                                        </span>
+                                        {% if answer.explination %}
+                                            <span class="title">
+                                                Explanation:
+                                            </span>
+                                          {% endif }
                                       {% if answer.image %}
                                         <!-- help image -->
                                         <div>
@@ -173,7 +177,7 @@
                                         <!-- ans explination ends -->
                                     </div>
                                     <!-- end answer -->
-                                  {% endfor %}
+                                  {% endwith %}
                                 {% endif %}
                                 </div>
                             </div>

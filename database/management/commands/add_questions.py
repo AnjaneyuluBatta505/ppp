@@ -2,7 +2,6 @@ from django.core.management.base import BaseCommand
 from database.models import Question, Choice, Answer, SubTopic
 import re
 class Command(BaseCommand):
-    help = 'Closes the specified poll for voting'
 
     def handle(self, *args, **options):
         import re

@@ -96,13 +96,14 @@
                                 <!--end choice -->
                               {% endfor %}
                             {% if request.POST %}
-                              {% for answer in question.answers.all %}
                                 <!-- answer -->
                                 <div class="col-lg-12 explination" itemprop="description">
+                                    {% if question.answers.explination%}
                                     <span class="title">
                                         Explanation:
                                     </span>
-                                  {% if answer.image %}
+                                    {% endif %}
+                                  {% if question.answers.image %}
                                     <!-- help image -->
                                     <div>
                                         <img src="{{ answer.image.url }}" >
@@ -111,12 +112,11 @@
                                   {% endif %}
                                     <!-- ans explination -->
                                     <span >
-                                            {{ answer.explination|safe }}
+                                            {{ question.answers.explination|safe }}
                                     </span>
                                     <!-- ans explination ends -->
                                 </div>
                                 <!-- end answer -->
-                              {% endfor %}
                             {% endif %}
                             </div>
                              <ol>
@@ -161,27 +161,25 @@
                                 <!--end choice -->
                               {% endfor %}
                                 {% if request.POST %}
-                                  {% for answer in question.answers.all %}
                                     <!-- answer -->
-                                    <div class="col-lg-12 " itemprop="description">
-                                        <span class="question explination title">
+                                    <div class="col-lg-12 explination" itemprop="description">
+                                        <span class="question title">
                                             Explination:
                                         </span>
-                                      {% if answer.image %}
+                                      {% if question.answers.image %}
                                         <!-- help image -->
                                         <div>
-                                            <img src="{{ answer.image.url }}">
+                                            <img src="{{ question.answers.image.url }}">
                                         </div>
                                         <!-- end help image -->
                                       {% endif %}
                                         <!-- ans explination -->
                                         <span >
-                                                {{ answer.explination|safe }}
+                                                {{ question.answers.explination|safe }}
                                         </span>
                                         <!-- ans explination ends -->
                                     </div>
                                     <!-- end answer -->
-                                  {% endfor %}
                                 {% endif %}
                                 </div>
                             </div>

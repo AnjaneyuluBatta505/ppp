@@ -49,27 +49,25 @@
                                     <img src="{{ question.image.url }}">
                                 </div>
                               {% endif %}
-                              {% for answer in question.answers.all %}
                                 <!-- answer -->
                                 <div class="col-lg-12">
                                     <span class="title">
                                         Answer:
                                     </span>
-                                  {% if answer.image %}
+                                  {% if question.answers.image %}
                                     <!-- help image -->
                                     <div>
-                                        <img src="{{ answer.image.url }}">
+                                        <img src="{{ question.answers.url }}">
                                     </div>
                                     <!-- end help image -->
                                   {% endif %}
                                     <!-- ans explination -->
                                     <span>
-                                            {{ answer.explination|safe }}
+                                            {{ question.answers.explination|safe }}
                                     </span>
                                     <!-- ans explination ends -->
                                 </div>
                                 <!-- end answer -->
-                              {% endfor %}
                             </div>
                         </div>
                         <!-- question end -->
