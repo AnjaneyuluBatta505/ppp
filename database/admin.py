@@ -19,6 +19,11 @@ class ChoiceInline(admin.StackedInline):
     model = Choice
     extra = 4
 
+    def get_extra(self, request, obj=None, **kwargs):
+        if obj.id:
+            return 0
+        return self.extra
+
     class Media:
         js = ('js/ckeditor/ckeditor.js',
               'js/ckeditor/configuration-ckeditor.js')
