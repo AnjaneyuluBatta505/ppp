@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block meta_tags %}
-    <meta name="keywords" content="practice placement papers, {{ slug }}, general, questions, aptitude, answers, explanation, solutions, examples, interview, entrance, exam, online, test, quiz, pdf, download, freshers, ebooks">
+    <meta name="keywords" content="Practice {{ slug|Title }} latest Placement Papers">
     <meta name="description" content="Practice the latest placement papers of {{ slug }} . Learn and practice the placement papers of {{ slug }} and find out how much you score you get. Be confident before you appear for your next interview and written test of {{ slug }}.">
     <meta name="title" content="Practice {{ slug }} latest paper questions and answers">
+{% endblock %}
+{% block title_tags %}
+    <title>Practice {{ slug|title  }} Placement Test</title>
 {% endblock %}
 {% block content %}
     <div class="container-fluid  advert">
