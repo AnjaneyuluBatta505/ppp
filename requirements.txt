@@ -4,3 +4,4 @@ argparse==1.2.1
 gunicorn==19.4.1
 whitenoise==2.0.6
 wsgiref==0.1.2
+django-htmlmin==0.10.0
