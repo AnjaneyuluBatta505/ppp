@@ -6,7 +6,7 @@
     <meta name="title" content="practice placement papers of {{ company.name }} company">
 {% endblock %}
 {% block title_tags %}
-    <title>Practice Placement Papers | research about company {{ company.name  }} </title>
+    <title>Practice {{ company.name  }} Placement Papers</title>
 {% endblock %}
 {% block content %}
 <div class="container-fluid no-padding no-margin">
@@ -53,7 +53,7 @@
         <div class="row">
           {% for year in paper_years %}
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <i> Practice placement paper of <b>{{ company.name }}</b>&nbsp;<emphasize>{{ year }}</emphasize></i>
+                <i> Practice placement paper of <b>{{ company.name }}</b>&nbsp;<emphasize> [Paper-{{ forloop.counter }}]</emphasize></i>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <a class="advert" href="{{ base_url }}{% url 'ppp:company_test_view' slug year %}">view</a>

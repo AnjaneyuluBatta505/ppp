@@ -63,6 +63,51 @@ body{background:#fff;color:#3e3e3e;font-family:Geomanist,Helvetica,sans-serif;fo
 h1{font-size:19px;padding:0px;margin:0px;text-align:center;color:brown;}
 h2{font-size:15px;font-weight:700;letter-spacing:2px;}
 h4{color:green;text-decoration:underline;}
+/*custom search*/
+.cse .gsc-search-button input.gsc-search-button-v2,
+input.gsc-search-button-v2 {
+    height: 32px !important;
+    margin-top: 0 !important;
+    min-width: 13px !important;
+    padding: 5px 26px !important;
+    width: 68px !important;
+    background: #d34836 !important;
+    vertical-align: middle;
+}
+#gsc-iw-id1{
+    position: static;
+    height: 30px;
+}
+input.gsc-search-button-v2 {
+    width: 13px;
+    height: 30px;
+    padding: 6px 27px;
+    min-width: 13px;
+    margin-top: 2px;
+}
+/* end */
+.social-container a{
+    color: #FFFFFF;
+}
+.social-container {
+    top: 25%;
+    position: fixed;	
+    text-align: center;
+    max-width: 60px;
+    color: #fff;
+}
+.social-icon{
+width: 40px;
+background: red;
+margin: 3px;
+}
+.count{
+height: 20px;
+border-top: 1px solid #fff;
+padding: 0px;
+font-size: 12px;
+color: #FFEB3B;
+}
 @media (max-width:@screen-xs-max){}
 @media (min-width:@screen-sm-min) and (max-width:@screen-sm-max){}
 @media (min-width:@screen-md-min) and (max-width:@screen-md-max){.companies-list .panel{min-height:250px !important;}
