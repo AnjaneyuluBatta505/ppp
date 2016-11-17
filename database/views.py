@@ -244,7 +244,7 @@ def sitemap(request):
 
 
 def google_verification(request):
-    return render_to_response("googlea95613a6b3c4ff8a.html", content_type="text/html")
+    return render_to_response("googlea95613a6b3c4ff8a.html", content_type="text/plain")
 
 
 def bing_verification(request):
