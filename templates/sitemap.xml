@@ -70,5 +70,13 @@
         <lastmod>{{ modified|date:"Y-m-d" }}</lastmod>
         <changefreq>daily</changefreq>
         <priority>1</priority>
-  </url>
+    </url>
+    {% for question in questions %}
+    <url>
+        <loc>{{ base_url }}/{{ question.slug }}</loc>
+        <lastmod>{{ modified|date:"Y-m-d" }}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1</priority>
+    </url>
+    {% endfor %}
 </urlset>
