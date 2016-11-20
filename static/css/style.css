@@ -41,6 +41,7 @@
 .no-padding{padding:00px !important;}
 .submit button{width:100%;background:#337AB7;}
 .explination{background:whitesmoke;}
+.explination h1{text-align:left;color: blue;font-weight: 500;}
 .navbar{margin-bottom:00px;}
 .nav-bar-container{border-radius:0px;border-bottom:2px solid black;background:#006FB4;}
 .navbar-header a.navbar-brand{color:#fff;font-size:20px;font-weight:500;}

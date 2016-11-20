@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block meta_tags %}
+    <meta name="keywords" content="practice placement papers, {{ question.sub_topic }}, {{ question.sub_topic.topic }}">
+    <meta name="description" content="{{ question }}">
+    <meta name="title" content="{{ question }}">
+{% endblock %}
+{% block title_tags %}
+    <title>{{ question }} </title>
+{% endblock %}
+{% block content %}
+<div class="container-fluid  advert">
+    {% include "advertisements/amazon/add-unit-bottom.html" %}
+</div>
+<div class="container-fluid no-padding no-margin">
+  <div class="col-lg-2 hidden-sm hidden-xs advert">
+    {% include "advertisements/add-unit-left.html" %}
+  </div>
+  <div class="col-lg-8">
+  <!-- question -->
+  <div class="col-lg-12 explination">
+  <br clearall>
+  <div>
+    <h1>
+      {{ question.data|safe }}
+    </h1>
+    {% if question.image %}
+    <!-- question help image -->
+    <div class="col-lg-12">
+        <img src="{{ question.image.url }}">
+    </div>
+    {% endif %}
+    {% for choice in question.choices.all %}
+    <!-- choice -->
+    <div class="col-lg-6">
+        <div class="col-lg-12" style="padding:0px;margin:0px;">
+            <div class="col-lg-12">
+                <div class="inline {% if choice.id|slugify in request.POST.values and choice.is_answer %} correct{% endif %}">
+                    <input name="{{ question.id }}"  type="{% if choice.is_answer and request.POST %}checkbox{%else%}radio{% endif %}" value="{{ choice.id }}" {% if choice.id|slugify in request.POST.values or request.POST and choice.is_answer %}checked{% endif %}{%if request.POST %} disabled{%endif%} >
+                </div>
+                <div class="inline" >
+                    <span >{{ choice.description|safe }}</span>
+                </div>
+            </div>
+            {% if choice.image %}
+            <div class="col-lg-10" >
+                    <img src="{{ choice.image.url }}" style="width:100%;height:100%;">
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <!--end choice -->
+    {% endfor %}
+    <hr>
+    <!-- answer -->
+    <div class="col-lg-12 explination" itemprop="description">
+      {% if question.answers.explination %}
+        <span class="title">
+            Explanation:
+        </span>
+      {% endif %}
+      {% if question.answers.image %}
+        <!-- help image -->
+        <div>
+            <img src="{{ question.answers.image.url }}">
+        </div>
+        <!-- end help image -->
+      {% endif %}
+        <!-- ans explination -->
+        <span>
+                {{ question.answers.explination|safe }}
+        </span>
+        <!-- ans explination ends -->
+    </div>
+    <!-- end answer -->
+  </div>
+  <ol>
+  {% for question in  question.linked_questions.all %}
+    <!-- question -->
+    <div class="col-lg-12">
+        <div>
+            <li itemprop="name">
+                {{ question.data|safe }}
+            </li>
+          {% if question.image %}
+            <!-- question help image -->
+            <div class="col-lg-12">
+                <img src="{{ question.image.url }}">
+            </div>
+          {% endif %}
+          {% for choice in question.choices.all %}
+        <!-- choice -->
+        <div class="col-lg-6">
+            <div class="col-lg-12" style="padding:0px;margin:0px;">
+                <div class="col-lg-12">
+                    <div class="col-lg-2">
+                        <input name="{{ question.id }}"  type="{% if choice.is_answer %}checkbox{%else%}radio{% endif %}" value="{{ choice.id }}">
+                    </div>
+                    <div class="col-lg-10" >
+                        {{ choice.description|safe }}
+                    </div>
+                </div>
+                {% if choice.image %}
+                <div class="col-lg-10" >
+                        <img src="{{ choice.image.url }}" style="width:100%;height:100%;">
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <!--end choice -->
+  {% endfor %}
+    <!-- answer -->
+    <div class="col-lg-12 explination" itemprop="description">
+      {% if question.answers.explination %}
+       <span class="title">
+            Explanation:
+        </span>
+       {% endif %}
+      {% if question.answers.image %}
+        <!-- help image -->
+        <div>
+            <img src="{{ question.answers.image.url }}">
+        </div>
+        <!-- end help image -->
+      {% endif %}
+        <!-- ans explination -->
+        <span>
+                {{ question.answers.explination|safe }}
+        </span>
+        <!-- ans explination ends -->
+    </div>
+    <!-- end answer -->
+      </div>
+  </div>
+  <!-- question end -->
+  {% endfor %}
+  </div>          
+  <!-- question end -->
+  </div>
+  <div class="col-lg-2 hidden-sm hidden-xs advert">
+    {% include "advertisements/add-unit-right.html" %}
+  </div>
+</div>
+<div class="container-fluid advert">
+  {% include "advertisements/add-unit-bottom.html" %}
+</div>
+{% endblock %}

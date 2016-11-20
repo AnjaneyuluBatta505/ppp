@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, render_to_response
 from django.template import RequestContext
-
+from django.http import Http404
 from .models import *
 from django.conf import settings
 
@@ -169,6 +169,18 @@ def technical(request, topic, sub_topic):
     return render(request, "subtopic.html", context)
 
 
+def question_detail(request, pk, slug):
+    question = Question.objects.filter(pk=pk).first()
+    if not question:
+        raise Http404
+    context = {"question": question}
+    return render_to_response(
+        "question_detail.html",
+        context=context,
+        content_type="text/html"
+    )
+
+
 def company_test_start(request, slug, date_slug):
     questions = Question.objects.filter(
         company__slug=slug, date=Year.objects.get(date=date_slug), reference=None)
@@ -238,6 +250,7 @@ def sitemap(request):
         "paginate_len": range(2, 11),
         "created": created,
         "modified": modified,
+        "questions": Question.objects.filter(reference__isnull=True),
         "base_url": get_base_url(request)
     }
     return render_to_response("sitemap.xml", data, content_type="text/xml")
@@ -248,4 +261,4 @@ def google_verification(request):
 
 
 def bing_verification(request):
-    return render_to_response("BingSiteAuth.xml", content_type="text/html")
+    return render_to_response("BingSiteAuth.xml", content_type="text/plain")

@@ -72,11 +72,10 @@ class SubTopic(models.Model):
 
 
 class Question(models.Model):
-    data = models.CharField(
-        max_length=10000, blank=True, null=True)
+    data = models.CharField(max_length=10000, blank=True, null=True)
+    slug = models.SlugField(blank=True, null=True)
     image = models.ImageField(upload_to=url, blank=True, null=True)
-    company = models.ManyToManyField(
-        Company, blank=True, related_name="questions")
+    company = models.ManyToManyField(Company, blank=True, related_name="questions")
     sub_topic = models.ForeignKey(SubTopic, related_name='questions')
     level = models.CharField(choices=QLEVEL, max_length=10, default="L1")
     reference = models.ForeignKey(
@@ -89,6 +88,11 @@ class Question(models.Model):
         # .decode('iso-8859-1').encode('utf8'))
         question_text = str(doc.text_content())
         return str(self.sub_topic.topic) + ":" + question_text[:100]
+
+    def save(self, *args, **kwargs):
+        if self.id:
+            self.slug = str(self.id) + "#" + str(self).replace(":", "-", 1).replace("\n", " ").replace(" ", "-")
+        super(Question, self).save(*args, **kwargs)
 
 
 class Choice(models.Model):
