@@ -41,7 +41,7 @@ class AnswerInline(admin.StackedInline):
 
 class QuestionAdmin(admin.ModelAdmin):
     form = QuestionForm
-    # exclude = []
+    exclude = ["slug"]
     inlines = [ChoiceInline, AnswerInline]
     list_filter = ('sub_topic',)
     search_fields = [('data')]
