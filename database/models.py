@@ -1,5 +1,6 @@
 import sys
 from django.db import models
+from django.utils.text import slugify
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -91,7 +92,8 @@ class Question(models.Model):
 
     def save(self, *args, **kwargs):
         if self.id:
-            self.slug = str(self.id) + "#" + str(self).replace(":", "-", 1).replace("\n", " ").replace(" ", "-")
+            self.slug = slugify(str(self.id) + "/" + str(self).replace(":", "-", 1).replace("\n", " ").replace(" ", "-"))
+
         super(Question, self).save(*args, **kwargs)
 
 
