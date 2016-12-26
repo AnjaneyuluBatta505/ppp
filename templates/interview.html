@@ -1,9 +1,28 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+
 {% block meta_tags %}
     <meta name="keywords" content=" interview tips, resume tips, how to prepare for an interview">
-    <meta name="description" content="Do your research and know as much as you can about the company/organization Learn as much as you can about the position/job. Access a copy of the job description. Talk to someone employed in the same kind of position. prepare your resume and make sure you have knowledge on each point that you mentioned in resume">
-    <meta name="title" content="practice placement papers, how to prepare for an interview ?">
+    <meta name="description" content="Do your research and know as much as you can about the company/organization Learn as much as you can about the position/job. Access a copy of the job description. Talk to someone employed in the same kind of position. prepare your resume and make sure you have knowledge on each point that you mentioned in resume.">
+    <meta name="title" content="how to prepare for an interview ?">
+
+    <!-- twitter -->
+    <meta name="twitter:card" content="Practice Placement Papers" />
+    <meta name="twitter:site" content="@placement505" />
+    <meta name="twitter:creator" content="@placement505" />
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    <meta property="og:title" content="how to prepare for an interview ?"/>
+    <meta property="og:description" content="Do your research and know as much as you can about the company/organization Learn as much as you can about the position/job. Access a copy of the job description. Talk to someone employed in the same kind of position. prepare your resume and make sure you have knowledge on each point that you mentioned in resume." />
+    <meta property="og:image" content="{{ base_url }}{%static 'images/favicon.ico' %}" />
+    <!--/end  -->
+    <!-- facebook -->
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="how to prepare for an interview ?" />
+    <meta property="og:description" content="Do your research and know as much as you can about the company/organization Learn as much as you can about the position/job. Access a copy of the job description. Talk to someone employed in the same kind of position. prepare your resume and make sure you have knowledge on each point that you mentioned in resume." />
+    <meta property="og:image" content="{{ base_url }}{%static 'images/favicon.ico' %}" />
+    <!--/end  -->
+
 {% endblock %}
 {% block title_tags %}
     <title>Practice Placement Papers | practice interview questions </title>

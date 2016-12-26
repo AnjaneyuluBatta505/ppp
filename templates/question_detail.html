@@ -1,10 +1,30 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+
 {% block meta_tags %}
-    <meta name="keywords" content="practice placement papers, {{ question.sub_topic }}, {{ question.sub_topic.topic }}">
+    <meta name="keywords" content="{{ question.sub_topic }}, {{ question.sub_topic.topic }}">
     <meta name="description" content="{{ question }}">
     <meta name="title" content="{{ question }}">
+
+    <!-- twitter -->
+    <meta name="twitter:card" content="Practice Placement Papers" />
+    <meta name="twitter:site" content="@placement505" />
+    <meta name="twitter:creator" content="@placement505" />
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    <meta property="og:title" content="{{ question }}"/>
+    <meta property="og:description" content="{{ question }}" />
+    <meta property="og:image" content="{{ base_url }}{%static 'images/favicon.ico' %}" />
+    <!--/end  -->
+    <!-- facebook -->
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{ question }}" />
+    <meta property="og:description" content="{{ question }}" />
+    <meta property="og:image" content="{{ base_url }}{%static 'images/favicon.ico' %}" />
+    <!--/end  -->
+
 {% endblock %}
+
 {% block title_tags %}
     <title>{{ question }} </title>
 {% endblock %}

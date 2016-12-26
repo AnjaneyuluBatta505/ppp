@@ -1,10 +1,30 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+
 {% block meta_tags %}
-    <meta name="keywords" content="practice, placement, papers, about, company, {{ company.name }}, free online tests">
-    <meta name="description" content=" practice placement papers of {{ company.name }}, {{ company.about|truncatewords:49}} ">
-    <meta name="title" content="practice placement papers of {{ company.name }} company">
+    <meta name="keywords" content="placement, questions, about, company, {{ company.name }}, free online tests, aptitude, english, reasoning">
+    <meta name="description" content="Interview pattern of various companies such as TCS, Infosys, Wipro, Accenture, IBM, CTS etc. Fully solved placement papers with detailed explanations. Improve yourself for best results.">
+    <meta name="title" content="practice placement papers">
+
+    <!-- twitter -->
+    <meta name="twitter:card" content="Practice Placement Papers" />
+    <meta name="twitter:site" content="@placement505" />
+    <meta name="twitter:creator" content="@placement505" />
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    <meta property="og:title" content="Practice Placement Papers of TCS, Infosys, Wipro, Accenture, IBM, CTS"/>
+    <meta property="og:description" content="The biggest collection of placement papers. interview pattern of various companies such as TCS, Infosys, Wipro, Accenture, IBM, CTS etc. Fully solved placement papers with detailed explanations. Improve yourself for best results." />
+    <meta property="og:image" content="{{ base_url }}{%static 'images/favicon.ico' %}" />
+    <!--/end  -->
+    <!-- facebook -->
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Practice Placement Papers of TCS, Infosys, Wipro, Accenture, IBM, CTS" />
+    <meta property="og:description" content="The biggest collection of placement papers. interview pattern of various companies such as TCS, Infosys, Wipro, Accenture, IBM, CTS etc. Fully solved placement papers with detailed explanations. Improve yourself for best results." />
+    <meta property="og:image" content="{{ base_url }}{%static 'images/favicon.ico' %}" />
+    <!--/end  -->
+
 {% endblock %}
+
 {% block title_tags %}
     <title>Practice {{ company.name  }} Placement Papers</title>
 {% endblock %}
