@@ -9,7 +9,7 @@ from django.conf import settings
 
 
 def get_base_url(request):
-    return "https://" + request.META["HTTP_HOST"]
+    return request.scheme + "://" + request.META["HTTP_HOST"]
 
 
 def home(request):
